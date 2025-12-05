@@ -1,0 +1,65 @@
+[
+  {
+    "section": "Dashboard",
+    "icon": "",
+    "items": []
+  },
+  {
+    "section": "Product",
+    "icon": "",
+    "items": [
+      {
+        "name": "Add Product",
+        "icon": "",
+        "href": "/admin/product/add-product"
+      },
+      {
+        "name": "Products List",
+        "icon": "",
+        "href": "/admin/product/product-list"
+      },
+      {
+        "name": "Manage Category",
+        "icon": "",
+        "href": "/admin/product-category"
+      },
+      {
+        "name": "Manage Brand",
+        "icon": "",
+        "href": "/admin/product-brand"
+      }
+    ]
+  },
+  {
+    "section": "Order",
+    "icon": "",
+    "items": [
+      {
+        "name": "Order List",
+        "icon": "",
+        "href": "/admin/order/list"
+      }
+    ]
+  },
+  {
+    "section": "Setting",
+    "icon": "",
+    "items": [
+      {
+        "name": "Product Attribute",
+        "icon": "",
+        "href": "/admin/product/attribute"
+      },
+      {
+        "name": "Manage Location",
+        "icon": "",
+        "href": "/admin/manage-location"
+      },
+      {
+        "name": "Manage Shipping",
+        "icon": "",
+        "href": "/admin/manage-shipping"
+      }
+    ]
+  }
+]

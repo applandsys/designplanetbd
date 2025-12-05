@@ -1,0 +1,9 @@
+
+DB SCHEMA 			= ecommerce\backend\prisma\schema.prisma
+Customer Route		= ecommerce\route\customerRoute.js  
+														['/order-submit', '/tree/:id', '/tree/:id/:side', '/tree/uid/:uid/:side', '/tree/exist/sponsor-placement/:sponsoruid/:placementuid', '/monthly-point/:id', '/downline-count/:id',  '/downline-count/:id', '/tree-ids/:id/:side' ] ;
+
+
+
+
+
