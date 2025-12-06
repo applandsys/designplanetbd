@@ -121,13 +121,10 @@ export default function CheckoutPage() {
                 }
             );
 
-
             if (response.status === 201) {
                 dispatch(clearCart());
                 alert("Order placed successfully!");
-                router.push(
-                    `/order/success?orderDetail=${JSON.stringify(response)}`
-                );
+                router.push('/order/success'); // or wherever
             } else {
                 alert("Failed to place order.");
             }
@@ -151,9 +148,9 @@ export default function CheckoutPage() {
                                         {
                                             !customer ? (
                                                 <div className="flex">
-                                                    <UserIcon className="text-gray-600 w-6 h-6"/>
+                                                    <UserIcon className="text-gray-600"/>
                                                     <span className="px-2">Already have an account?</span>
-                                                    <a href="#" className="text-green-600"
+                                                    <a href="#" className="text-red-600"
                                                        onClick={() => setLoginOpen(!loginOpen)}> Click here to login</a>
                                                 </div>
                                             ) : <><CustomerWelcome
@@ -186,13 +183,50 @@ export default function CheckoutPage() {
                         </div>
 
 
-                        <div className="w-full">
+                        <div className="loginFormToggleBox w-1/2">
                             {loginOpen && (
                                 <Login/>
                             )}
                         </div>
 
+                        <div className="mt-4 mx-2  ">
+                            <form className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
+                                <div className="flex flex-col">
+                                    <label htmlFor="first-name" className="text-sm font-medium text-gray-700">First Name</label>
+                                    <input id="first-name" name="first-name" type="text" className="mt-1 p-2 border border-gray-300 rounded-md" required/>
+                                </div>
 
+                                <div className="flex flex-col">
+                                    <label htmlFor="last-name" className="text-sm font-medium text-gray-700">Last Name</label>
+                                    <input id="last-name" name="last-name" type="text" className="mt-1 p-2 border border-gray-300 rounded-md" required/>
+                                </div>
+
+                                <div className="flex flex-col">
+                                    <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
+                                    <input id="email" name="email" type="email" className="mt-1 p-2 border border-gray-300 rounded-md" required/>
+                                </div>
+
+                                <div className="flex flex-col">
+                                    <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone Number</label>
+                                    <input id="phone" name="phone" type="tel" className="mt-1 p-2 border border-gray-300 rounded-md" required/>
+                                </div>
+
+                                <div className="flex flex-col md:col-span-2">
+                                    <label htmlFor="address" className="text-sm font-medium text-gray-700">Address</label>
+                                    <textarea id="address" name="address" rows="4" className="mt-1 p-2 border border-gray-300 rounded-md" required></textarea>
+                                </div>
+
+                                {/*<div className="flex flex-col md:col-span-2">*/}
+                                {/*    <div className="flex justify-end mt-4 w-full   ">*/}
+                                {/*        <button type="submit" className="w-auto p-2 px-6 bg-blue-600 text-white rounded-md">*/}
+                                {/*            Submit*/}
+                                {/*        </button>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
+
+
+                            </form>
+                        </div>
                         <div className="shippingBox mt-4">
                             {
                                 differentShipping && (
@@ -261,12 +295,10 @@ export default function CheckoutPage() {
                                         <input type="radio" name="payment" className="mr-2"/> Online Gateway
                                     </label>
                                 </div>
-
                                 <div className="flex items-center space-x-3 mt-4">
                                     <Image className="h-24 w-24" src={`${config.publicPath}/images/payment_gatway/bkash.png`} alt="..." width={100} height={100} />
                                 </div>
-
-                                <button type="submit" className="mt-6 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">
+                                <button type="submit" className="mt-6 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700">
                                     Place an Order
                                 </button>
                             </div>

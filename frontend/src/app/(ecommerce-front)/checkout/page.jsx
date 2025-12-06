@@ -7,7 +7,7 @@ export default function Home() {
     const breadcrumbItems = [
         { label: "Home", href: "/" },
         { label: "Cart", href: "/cart" },
-        { label: "Checkout", href: null }
+        { label: "Checkout", href: null } // current page
     ];
 
     return (

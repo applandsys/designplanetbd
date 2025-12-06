@@ -16,11 +16,11 @@ const Navigation = () => {
                         <div className="flex items-center px-4">
                             <div className="hidden md:flex space-x-8">
                                 <Link href="/"
-                                      className="text-gray-600 hover:text-blue-600 font-medium">Home</Link>
+                                      className="text-gray-600 hover:text-red-600 font-medium">Home</Link>
                                 <Link href="/about"
-                                      className="text-gray-600 hover:text-blue-600 font-medium">About</Link>
+                                      className="text-gray-600 hover:text-red-600 font-medium">About</Link>
                                 <Link href="/contact"
-                                   className="text-gray-600 hover:text-blue-600 font-medium">Contact</Link>
+                                   className="text-gray-600 hover:text-red-600 font-medium">Contact</Link>
                             </div>
                         </div>
                     </div>

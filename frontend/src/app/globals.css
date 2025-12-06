@@ -1,81 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
-/*@media (prefers-color-scheme: dark) {*/
-/*  :root {*/
-/*    --background: #0a0a0a;*/
-/*    --foreground: #ededed;*/
-/*  }*/
-/*}*/
+/* Prevent horizontal scroll on mobile */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: 'Kumbh Sans', Arial, Helvetica, sans-serif;
+}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Ensure all elements stay within viewport */
+* {
+    box-sizing: border-box;
+}
+
+/* Specific fixes for common overflow issues */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Container constraints */
+.container, .mx-auto {
+    max-width: 100%;
+}
+
+/* Prevent carousel overflow */
+.swiper-container, .slick-slider, .carousel {
+    overflow: hidden;
+}
+
+/* Fix for flex items causing overflow */
+.flex, .flex-row, .flex-col {
+    min-width: 0;
+}
+
+/* Fix for grid items causing overflow */
+.grid {
+    min-width: 0;
+}
+
+/* Ensure text doesn't cause overflow */
+p, h1, h2, h3, h4, h5, h6, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
 
+/* ===== TYPOGRAPHY ===== */
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.title-secondary {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* ===== SCROLLBAR STYLES ===== */
 .carauselSlider::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
-
-
-.title-secondary{
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-
-/* Nujmber Inpu arrow */
-/* Hide the number input arrows */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-/* Custom styling for the number input */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-h1{
-  font-size: 2.5rem;
-}
-
-h2{
-  font-size: 2rem;
-}
-
-h3{
-  font-size: 1.5rem;
-}
-
-.zoom-image {
-  object-fit: cover; /* Ensures the zoomed image covers the container */
-  min-width: 400%;
-  min-height: 400%;
-  object-position: center center; /* Keep the zoom centered */
-}
-
 
 .custom-scroll::-webkit-scrollbar {
     width: 6px;
@@ -91,3 +98,155 @@ h3{
     border-radius: 10px;
 }
 
+/* ===== FORM ELEMENTS ===== */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Announcement Bar Scroll Animation */
+@keyframes scrollAnnouncement {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll-smooth {
+    animation: scrollAnnouncement 35s linear infinite;
+    transition: animation-play-state 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover\:animation-paused:hover {
+    animation-play-state: paused;
+}
+
+/* Width Bounce Animation */
+@keyframes widthBounce {
+    0%, 100% {
+        width: 100%;
+    }
+    50% {
+        width: 0%;
+    }
+}
+
+/* Cart Slide Animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Cart Animation Classes */
+.cart-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+}
+
+.cart-slide-out-right {
+    animation: slideOutRight 0.3s ease-in forwards;
+}
+
+.backdrop-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.backdrop-fade-out {
+    animation: fadeOut 0.3s ease-in forwards;
+}
+
+/* ===== COMPONENT STYLES ===== */
+
+/* Button Hover Effects */
+.arrow-button:hover svg {
+    color: white !important;
+}
+
+.explore-btn-container button {
+    width: 180px;
+    padding: 0 2rem;
+    transition: all 0.5s ease;
+}
+
+.explore-btn-container button:hover {
+    width: 200px;
+    padding-right: 3rem;
+}
+
+/* Utility Animation Classes */
+.animate-slideInRight {
+    animation: slideInRight 0.3s ease-out forwards;
+}
+
+/* Position Fixes */
+.fixed.right-0 {
+    right: 0 !important;
+}
+
+.cart-panel-fix {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}

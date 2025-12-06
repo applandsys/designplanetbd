@@ -31,13 +31,12 @@ export default function NewProducts() {
                             alt={product.images[0].altText} className="w-12 h-12 object-cover rounded-md"
                         />
                      </Link>
-                    <div className="flex justify-between">
-                        <div className={` mx-2 font-semibold ${product.rating >= 4 ? 'text-green-700' : 'text-orange-600'}`}>
+                        <div className="flex justify-between"><div className={`mx-2 font-semibold capitalize ${product.rating >= 4 ? 'text-gray-800' : 'text-green-900'}`}>
                             {product.name}
                         </div>
-                        <div className="font-semibold text-gray-700 text-right mx-4">
+                        <div className="font-semibold text-gray-600 text-right mx-4">
                             ৳ {
-                                product.sellPrice
+                            product.sellPrice
                               }
                         </div>
                     </div>

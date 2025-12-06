@@ -57,7 +57,7 @@ const SearchInput = () => {
 
     return (
         <>
-            <div className="md:flex items-center border border-green-300 rounded-md w-full px-3 py-2 hidden">
+            <div className="md:flex items-center border border-[#F0D8D8] rounded-md w-full px-3 py-2 hidden">
                 <form onSubmit={handleSubmit} className="flex w-full items-center">
 
                     {/* Category Dropdown - Replaced the select */}
@@ -65,7 +65,7 @@ const SearchInput = () => {
                         <button
                             type="button"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="flex items-center justify-between text-sm font-semibold text-gray-700 outline-none min-w-[140px] pr-4 hover:text-blue-600 transition-colors"
+                            className="flex items-center justify-between text-sm font-semibold text-gray-700 outline-none min-w-[140px] pr-4 hover:text-red-600 transition-colors"
                         >
                             <span className="truncate">{getSelectedCategoryName()}</span>
                             <svg
@@ -86,8 +86,8 @@ const SearchInput = () => {
                                     onClick={() => handleCategorySelect("all", "All Categories")}
                                     className={`px-3 py-2 cursor-pointer transition-colors text-sm border-b border-gray-50 ${
                                         selectedCategory === "all"
-                                            ? 'bg-green-50 text-green-600 font-medium'
-                                            : 'hover:bg-gray-50 text-gray-700'
+                                            ? 'bg-red-50 text-red-700 font-medium'
+                                            : 'hover:bg-gray-50 text-gray-800'
                                     }`}
                                 >
                                     All Categories
@@ -100,7 +100,7 @@ const SearchInput = () => {
                                         onClick={() => handleCategorySelect(category.slug, category.name)}
                                         className={`px-3 py-2 cursor-pointer transition-colors text-sm ${
                                             selectedCategory === category.slug
-                                                ? 'bg-green-50 text-green-600 font-medium'
+                                                ? 'bg-red-50 text-black-700 font-medium'
                                                 : 'hover:bg-gray-50 text-gray-700'
                                         } ${index === categories.length - 1 ? '' : 'border-b border-gray-50'}`}
                                     >

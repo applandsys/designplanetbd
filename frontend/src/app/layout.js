@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import { Quicksand } from 'next/font/google';
+import { Quicksand, Kumbh_Sans } from 'next/font/google';
 
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
@@ -16,6 +16,12 @@ const quicksand = Quicksand({
     display: 'swap',
 })
 
+const kumbhSans = Kumbh_Sans({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700', '800'],
+    variable: '--font-kumbh',
+    display: 'swap',
+})
 
 export default function RootLayout({ children }) {
 
@@ -33,14 +39,14 @@ export default function RootLayout({ children }) {
     }, [pathname]);
 
 
-  return (
-    <html lang="en">
-      <body className={`${quicksand.variable} font-sans`}>
-          <div>
-              {loading && <Loader />}
-              {children}
-          </div>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className={`${quicksand.variable} ${kumbhSans.variable}`}>
+        <body className="font-sans">
+        <div>
+            {loading && <Loader />}
+            {children}
+        </div>
+        </body>
+        </html>
+    );
 }

@@ -31,8 +31,8 @@ export default function OrderList() {
                         <div key={product.productId} className="flex items-center justify-between mb-4">
                             {product.images.length > 0 && ( <Image width={100} height={100} src={`${config.publicPath}/images/products/${product.images[0].name}`} alt={product.images[0].altText} className="w-12 h-12 rounded" />)}
                             <div className="flex-1 ml-3">
-                                <p className="text-xs font-medium text-gray-800">{product.name}</p>
-                                <p className="text-xs text-gray-600">{product.quantity} × ${(product.price * product.quantity).toFixed(2)}</p>
+                                <p className="text-xs font-inter font-semibold text-gray-800">{product.name}</p>
+                                <p className="text-xs font-roboto text-gray-600">{product.quantity} × ${(product.price * product.quantity).toFixed(2)}</p>
                             </div>
                             <button
                                 onClick={(e) => {
@@ -46,9 +46,9 @@ export default function OrderList() {
                         </div>
                     ))}
                     <hr className="my-2" />
-                    <div className="flex justify-between font-semibold">
-                        <span>Total</span>
-                        <span className="text-green-600">${total.toFixed(2)}</span>
+                    <div className="flex justify-between font-sans font-semibold tracking-wide">
+                        <span className="text-gray-800">Sub total</span>
+                        <span className="text-red-600">${total.toFixed(2)}</span>
                     </div>
                 </>
             )}

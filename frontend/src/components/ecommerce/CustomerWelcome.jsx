@@ -5,7 +5,7 @@ import React from "react";
 const CustomerWelcome = ({name}) => {
     return (
         <div>
-            <h3 className="font-bold xs:text-xs "><span>Welcome,</span> <span className="text-green-600">{name}</span> </h3>
+            <h3 className="font-bold xs:text-xs "><span>Welcome,</span> <span className="" style={{ color: '#a52a2a' }} >{name}</span></h3>
         </div>
     );
 };

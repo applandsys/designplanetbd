@@ -1,6 +1,7 @@
 import ProductAddEditForm from "@/components/admin/ecommerce/ProductAddEditForm";
 
 const AddProduct = () => {
+
     return (
         <div>
             <div className="flex-1 p-2">

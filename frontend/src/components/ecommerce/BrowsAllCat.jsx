@@ -45,11 +45,14 @@ export default function CategoryButton() {
         <div className="relative inline-block" ref={dropdownRef}>
             <button
                 onClick={handleOpenCategory}
-                className="flex items-center justify-between bg-[#3bb77e] hover:bg-[#198754] text-white px-4 py-2 rounded-[4px] w-full max-w-xs shadow-md transition-colors"
+                className="flex items-center justify-center bg-gray-900 hover:bg-gray-700 text-white px-4 py-2 rounded-[4px] w-full max-w-xs shadow-md transition-colors duration-300"
             >
-                <ListBulletIcon className="h-5 w-5 mr-2" />
-                <span className="flex-1 text-center">Browse all Categories</span>
-                <ChevronDownIcon className="h-5 w-5 ml-2" />
+                {/* Single Grid icon in the center */}
+                <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+
+                <span>Categories</span>
             </button>
 
             {isOpen && (

@@ -1,81 +1,100 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Carousel, Typography, Button } from "@material-tailwind/react";
 import Image from "next/image";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/16/solid";
-import config from '@/config';
 
-const images = [
-    {
-        title: "Don't miss Amazing Grocery Deal",
-        subtTitle: "Sign up for the daily news letter",
-        path: `${config.publicPath}/images/slider/slider-1.png`,
-    },
-    {
-        title: "Fresh Vegetables Big Discount",
-        subtTitle: "Save upto 50% off on your first order",
-        path: `${config.publicPath}/images/slider/slider-2.png`,
-    },
-];
-
-export default function ImgSlider() {
-    const [current, setCurrent] = useState(0);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % images.length);
-        }, 4000);
-        return () => clearInterval(timer);
-    }, []);
+export default function ImageSlider() {
 
     return (
-        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-3xl">
-            {images.map((item, index) => (
-                <div
-                    key={index}
-                    className={`absolute inset-0 transition-opacity duration-1000 ${
-                        index === current ? "opacity-100 z-2" : "opacity-0 z-0"
-                    }`}
+        <Carousel
+            className="rounded-xl"
+            prevArrow={({ handlePrev }) => (
+                <button
+                    onClick={handlePrev}
+                    className="!absolute top-2/4 left-4 grid h-10 w-10 place-items-center rounded-full bg-green-500 text-white shadow-md hover:bg-green-600"
                 >
-                    {/* Text Layer */}
-                    <div className="absolute w-full md:w-1/2 inset-0 flex justify-center text-left ml-4 sm:ml-10 z-10 flex-col">
-                        <h1 className="text-gray-950 md:text-6xl font-bold drop-shadow-lg mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-                            {item.title}
-                        </h1>
-                        <h2 className="text-lg sm:text-xl md:text-2xl text-gray-700">
-                            {item.subtTitle}
-                        </h2>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="h-6 w-6"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+            )}
+            nextArrow={({ handleNext }) => (
+                <button
+                    onClick={handleNext}
+                    className="!absolute top-2/4 right-4 grid h-10 w-10 place-items-center rounded-full bg-green-500 text-white shadow-md hover:bg-green-600"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="h-6 w-6"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            )}
+        >
+            <div className="relative h-full w-full">
+
+
+                <Image    className="h-full w-full object-cover"  src={`${config.publicPath}/images/slider/slider-1.png`} alt="..." width={500} height={300} />
+                <div className="absolute inset-0 grid h-full w-full place-items-center ">
+                    <div className="w-3/4 text-left ">
+                        <Typography
+                            variant="h1"
+                            color="black"
+                            className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                        >
+                           Fresh Vegetables Big Discount
+                        </Typography>
+                        <Typography
+                            variant="lead"
+                            color="black"
+                            className="mb-12 opacity-80"
+                        >
+                            Save upt0 50% at your first order
+                        </Typography>
+                        {/*<div className="flex justify-center gap-2">*/}
+                        {/*    <Button size="lg" color="white">*/}
+                        {/*        Explore*/}
+                        {/*    </Button>*/}
+                        {/*    <Button size="lg" color="white" variant="text">*/}
+                        {/*        Gallery*/}
+                        {/*    </Button>*/}
+                        {/*</div>*/}
                     </div>
-
-                    {/* Background Image */}
-                    <Image
-                        src={item.path}
-                        alt={`Slide ${index + 1}`}
-                        fill
-                        className="object-cover"
-                    />
                 </div>
-            ))}
-
-            {/* Left Arrow */}
-            <button
-                onClick={() =>
-                    setCurrent((prev) => (prev - 1 + images.length) % images.length)
-                }
-                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-2 shadow-lg z-3"
-            >
-                <ArrowLeftIcon className="h-6 w-6 text-gray-800" />
-            </button>
-
-            {/* Right Arrow */}
-            <button
-                onClick={() =>
-                    setCurrent((prev) => (prev + 1) % images.length)
-                }
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-2 shadow-lg z-3"
-            >
-                <ArrowRightIcon className="h-6 w-6 text-gray-800" />
-            </button>
-        </div>
+            </div>
+            <div className="relative h-full w-full">
+                <Image     src={`${config.publicPath}/images/slider/slider-2.png`} alt="..." width={500} height={300}  className="h-full w-full object-cover"/>
+                <div className="absolute inset-0 grid h-full w-full place-items-center ">
+                    <div className="w-3/4 text-left ">
+                        <Typography
+                            variant="h1"
+                            color="black"
+                            className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                        >
+                            Fresh Vegetables Big Discount
+                        </Typography>
+                        <Typography
+                            variant="lead"
+                            color="black"
+                            className="mb-12 opacity-80"
+                        >
+                            Save upt0 50% at your first order
+                        </Typography>
+                    </div>
+                </div>
+            </div>
+        </Carousel>
     );
 }
