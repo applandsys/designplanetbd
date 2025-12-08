@@ -2,7 +2,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['localhost','bdhoms.com','backend.bdhoms.com'], // Allow images from localhost
+        domains: ['localhost','designplanetbd.com','backend.designplanetbd.com'], // Allow images from localhost
     },
     eslint: {
         ignoreDuringBuilds: true,
