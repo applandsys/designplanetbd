@@ -659,6 +659,7 @@ CREATE TABLE "supportTicket" (
 -- CreateTable
 CREATE TABLE "ticketReponse" (
     "id" SERIAL NOT NULL,
+    "ticketId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "message" TEXT NOT NULL,
     "status" TEXT NOT NULL,
@@ -666,6 +667,43 @@ CREATE TABLE "ticketReponse" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "ticketReponse_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "siteSetting" (
+    "id" SERIAL NOT NULL,
+    "site_name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "logo" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "whatsapp" TEXT NOT NULL,
+    "default_currency" INTEGER NOT NULL,
+    "is_maintenance" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "siteSetting_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "socialSetting" (
+    "id" SERIAL NOT NULL,
+    "social_name" TEXT NOT NULL,
+    "social_url" TEXT NOT NULL,
+    "social_icon" TEXT NOT NULL,
+
+    CONSTRAINT "socialSetting_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "currency" (
+    "id" SERIAL NOT NULL,
+    "currency_name" TEXT NOT NULL,
+    "currency_sign" TEXT NOT NULL,
+    "currency_rate" DOUBLE PRECISION NOT NULL,
+    "is_default" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "currency_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -709,6 +747,9 @@ CREATE UNIQUE INDEX "Label_name_key" ON "Label"("name");
 
 -- CreateIndex
 CREATE INDEX "ProductImage_productId_idx" ON "ProductImage"("productId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ProductCategory_slug_key" ON "ProductCategory"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "VariantAttribute_productVariantId_attributeValueId_key" ON "VariantAttribute"("productVariantId", "attributeValueId");
@@ -757,6 +798,12 @@ ALTER TABLE "ProductImage" ADD CONSTRAINT "ProductImage_productId_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "ProductCategory" ADD CONSTRAINT "ProductCategory_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "ProductCategory"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProductCategoryPivot" ADD CONSTRAINT "ProductCategoryPivot_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProductCategoryPivot" ADD CONSTRAINT "ProductCategoryPivot_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "ProductCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "AttributeValue" ADD CONSTRAINT "AttributeValue_attributeId_fkey" FOREIGN KEY ("attributeId") REFERENCES "Attribute"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -865,6 +912,9 @@ ALTER TABLE "activityLog" ADD CONSTRAINT "activityLog_userId_fkey" FOREIGN KEY (
 
 -- AddForeignKey
 ALTER TABLE "supportTicket" ADD CONSTRAINT "supportTicket_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Customer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ticketReponse" ADD CONSTRAINT "ticketReponse_ticketId_fkey" FOREIGN KEY ("ticketId") REFERENCES "supportTicket"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ProductCategories" ADD CONSTRAINT "_ProductCategories_A_fkey" FOREIGN KEY ("A") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;

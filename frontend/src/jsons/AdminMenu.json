@@ -59,6 +59,11 @@
         "name": "Manage Shipping",
         "icon": "",
         "href": "/admin/manage-shipping"
+      },
+      {
+        "name": "Site Setting",
+        "icon": "",
+        "href": "/admin/site-setting"
       }
     ]
   }

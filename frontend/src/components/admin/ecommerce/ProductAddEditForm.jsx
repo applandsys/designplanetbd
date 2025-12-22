@@ -803,14 +803,18 @@ const ProductAddEditForm = ({ productId }) => {
                                     </div>
 
                                     <div className="flex flex-col space-y-6 mb-16">
-                                        {isSize  && (
-                                            <ProductAttributes allAttributes={allAttributes} selectedAttributes={selectedAttributes} addClick={(att) => addSelectedAttributes(att)} attributeId={1} />
+                                        {isSize && (
+                                            <ProductAttributes
+                                                allAttributes={allAttributes}
+                                                selectedAttributes={selectedAttributes}
+                                                addClick={(att) => addSelectedAttributes(att)}
+                                                attributeId={1}
+                                            />
                                         )}
 
                                         {isWeight  && (
                                             <ProductAttributes allAttributes={allAttributes} selectedAttributes={selectedAttributes} addClick={(att) => addSelectedAttributes(att)} attributeId={3} />
                                         )}
-
 
                                         {isColor && (
                                             <div>

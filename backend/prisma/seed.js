@@ -31,11 +31,31 @@ async function main() {
             },
         ]
     });
+    await prisma.siteSetting.create({
+        data: {
+            site_name: 'My Amazing Site',
+            description: 'A site for all things amazing.',
+            logo: 'logo_url_here',
+            address: '123 Amazing St, Cityville',
+            phone: '123-456-7890',
+            email: 'contact@amazing.com',
+            whatsapp: '1234567890',
+            default_currency: 1
+        },
+    });
+
+    await prisma.currency.create({
+        data: {
+            currency_name : 'USD',
+            currency_sign: '$',
+            currency_rate : 1
+        }
+    });
 
     await prisma.user.create({
         data: {
             name : 'Super Administrator',
-            email: 'admin@omninestglobal.com',
+            email: 'admin@demo.com',
             password : adminPassword,
             role   : 'admin',
         }

@@ -3,43 +3,22 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import config from "@/config";
-import { GetProducts } from "@/services/ecommerce/GetProducts";
+import { fetchFeaturedProducts } from "@/services/ecommerce/GetProducts";
 
 const ShopInstagram = () => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const scrollerRef = useRef(null);
 
     useEffect(() => {
-        const run = async () => {
-            try {
-                const res = await GetProducts({
-                    limit: 20,
-                    page: 1,
-                    sortBy: "popular",
-                    order: "desc",
-                });
+       fetchFeaturedProducts().then(res=>{
+                    setItems(res); // ✅ ONLY API DATA
+                    setLoading(false);
+                }).catch(err=>setError(err));
 
-                const list =
-                    res?.data
-                        ?.filter(
-                            (p) =>
-                                Array.isArray(p.images) &&
-                                p.images.length > 0 &&
-                                p.status === "active"
-                        )
-                        .slice(0, 6) ?? [];
-
-                setItems(list.length ? list : getFallback());
-            } catch {
-                setItems(getFallback());
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        run();
     }, []);
+
 
     const openDetail = (slug) => {
         window.open(`/product/detail/${slug}`, "_blank", "noopener,noreferrer");
@@ -51,13 +30,12 @@ const ShopInstagram = () => {
                 {/* Header */}
                 <div className="text-center mb-0 px-4 py-5 md:py-6">
                     <h2 className="text-4xl md:text-5xl font-light tracking-tight text-black">
-                        Shop Instagram
+                        Shop for Executive
                     </h2>
                     <p className="mt-3 text-lg text-black font-light">
                         Elevate your wardrobe with fresh finds today!
                     </p>
                 </div>
-
                 {/* Loading skeletons */}
                 {loading ? (
                     <div className="grid grid-cols-2 md:grid-cols-6 gap-0">
@@ -70,7 +48,6 @@ const ShopInstagram = () => {
                     </div>
                 ) : (
                     <div className="relative w-full">
-                        {/* Mobile: 2 columns, Desktop: 6 columns - No gaps, no rounded corners */}
                         <div
                             ref={scrollerRef}
                             className="grid grid-cols-2 md:grid-cols-6 gap-0"
@@ -122,45 +99,3 @@ const ShopInstagram = () => {
 };
 
 export default ShopInstagram;
-
-/* Fallbacks with actual image paths */
-function getFallback() {
-    return [
-        {
-            id: "ig-1",
-            name: "Summer Collection",
-            slug: "summer-collection",
-            images: [{ name: "summer-outfit.jpg", altText: "Summer Fashion" }],
-        },
-        {
-            id: "ig-2",
-            name: "Winter Style",
-            slug: "winter-style",
-            images: [{ name: "winter-look.jpg", altText: "Winter Fashion" }],
-        },
-        {
-            id: "ig-3",
-            name: "Casual Wear",
-            slug: "casual-wear",
-            images: [{ name: "casual-outfit.jpg", altText: "Casual Look" }],
-        },
-        {
-            id: "ig-4",
-            name: "Evening Dress",
-            slug: "evening-dress",
-            images: [{ name: "evening-gown.jpg", altText: "Evening Wear" }],
-        },
-        {
-            id: "ig-5",
-            name: "Sports Gear",
-            slug: "sports-gear",
-            images: [{ name: "sports-outfit.jpg", altText: "Sports Wear" }],
-        },
-        {
-            id: "ig-6",
-            name: "Accessories",
-            slug: "accessories",
-            images: [{ name: "fashion-accessories.jpg", altText: "Style Accessories" }],
-        },
-    ];
-}

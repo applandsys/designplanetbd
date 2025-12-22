@@ -688,6 +688,34 @@ model ticketReponse {
   updatedAt DateTime      @updatedAt
 }
 
+model siteSetting {
+  id               Int     @id @default(autoincrement())
+  site_name        String
+  description      String
+  logo             String
+  address          String
+  phone            String
+  email            String
+  whatsapp         String
+  default_currency Int
+  is_maintenance   Boolean @default(false)
+}
+
+model socialSetting {
+  id          Int    @id @default(autoincrement())
+  social_name String
+  social_url  String
+  social_icon String
+}
+
+model currency {
+  id            Int     @id @default(autoincrement())
+  currency_name String
+  currency_sign String
+  currency_rate Float
+  is_default    Boolean @default(false)
+}
+
 enum ImageType {
   MAIN
   THUMBNAIL
