@@ -3,14 +3,8 @@
 import React, { useEffect, useState } from "react";
 import config from "@/config";
 import CommonCard from "@/components/ui/CommonCard";
-import {fetchSettingData} from "@/services/site/SettingData";
-
 
 const SiteSettingForm = () => {
-
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-
     const [formData, setFormData] = useState({
         site_name: "",
         description: "",
@@ -27,24 +21,33 @@ const SiteSettingForm = () => {
 
     // 🔹 Fetch existing site settings
     useEffect(() => {
-        fetchSettingData().then((json) => {
-            if (json.success) {
-                setFormData({
-                    site_name: json.data.site_name,
-                    description: json.data.description,
-                    logo: null, // file input must be null
-                    address: json.data.address,
-                    phone: json.data.phone,
-                    email: json.data.email,
-                    whatsapp: json.data.whatsapp,
-                    default_currency: json.data.default_currency,
-                });
+        const fetchSiteSetting = async () => {
+            try {
+                const res = await fetch(
+                    `${config.apiBaseUrl}/admin/setting/site-setting`
+                );
+                const json = await res.json();
 
-                setLogoPreview(json.data.logo);
+                if (json.success) {
+                    setFormData({
+                        site_name: json.data.site_name,
+                        description: json.data.description,
+                        logo: null, // file input must be null
+                        address: json.data.address,
+                        phone: json.data.phone,
+                        email: json.data.email,
+                        whatsapp: json.data.whatsapp,
+                        default_currency: json.data.default_currency,
+                    });
+
+                    setLogoPreview(json.data.logo);
+                }
+            } catch (error) {
+                console.error("Failed to load site settings", error);
             }
-        }).catch(error => setError(error)
-        ).finally(setLoading(false));
+        };
 
+        fetchSiteSetting();
     }, []);
 
     // 🔹 Input handler
@@ -94,9 +97,6 @@ const SiteSettingForm = () => {
             setSubmitting(false);
         }
     };
-
-    if (loading) return <div className="p-4">Fetching Data ...</div>;
-    if (error) return <div className="p-4 text-red-500">Error Happened contact Admin</div>;
 
     return (
         <CommonCard title="Site Settings">
