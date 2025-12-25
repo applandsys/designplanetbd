@@ -38,9 +38,6 @@ const settingRoute = require('@/modules/ecommerce/route/settingRoute');
 const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute');
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
 
-app.get('/v1/test', async (req, res) => {
-    res.end("Test is success");
-});
 
 // Customer Route //
 app.use('/v1/customer', customerRoute);
