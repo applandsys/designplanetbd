@@ -24,6 +24,7 @@ app.get('/', async (req, res) => {
     res.end("It's An API Server");
 });
 
+
 // Custom Routes
 const customerAuthRoute = require('@/modules/auth/route/customerAuthRoute');
 const userAuthRoute = require('@/modules/auth/route/userAuthRoute');
@@ -36,6 +37,10 @@ const categoryRoute = require('@/modules/ecommerce/route/categoryRoute');
 const settingRoute = require('@/modules/ecommerce/route/settingRoute');
 const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute');
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
+
+app.get('/v1/test', async (req, res) => {
+    res.end("Test is success");
+});
 
 // Customer Route //
 app.use('/v1/customer', customerRoute);
