@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import config from "@/config";
-import { fetchFeaturedProducts } from "@/services/ecommerce/GetProducts";
+import {
+    fetchProductByCatId
+} from "@/services/ecommerce/GetProducts";
 
 const ShopInstagram = () => {
     const [items, setItems] = useState([]);
@@ -12,7 +14,7 @@ const ShopInstagram = () => {
     const scrollerRef = useRef(null);
 
     useEffect(() => {
-       fetchFeaturedProducts().then(res=>{
+        fetchProductByCatId(1).then(res=>{
                     setItems(res); // ✅ ONLY API DATA
                     setLoading(false);
                 }).catch(err=>setError(err));

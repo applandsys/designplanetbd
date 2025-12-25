@@ -492,13 +492,13 @@ model Banner {
   image           String
   height          Int?
   width           Int?
-  position        String
+  position        String?
   url             String?
-  urlText         String?
-  titleText       String?
-  subText         String?
+  url_text        String?
+  title_text      String?
+  sub_text        String?
   backgroundColor String?
-  isButton        Boolean  @default(false)
+  is_button       Boolean  @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }

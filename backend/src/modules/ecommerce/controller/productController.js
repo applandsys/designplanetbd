@@ -41,6 +41,62 @@ const featuredProducts =  async (req,res) => {
     }
 }
 
+const productByCatId = async (req, res) => {
+    try {
+        const catId = parseInt(req.params.catid); // Ensure the catid is treated as an integer
+
+        const products = await prisma.product.findMany({
+            where: {
+                categories: {
+                    some: { id: catId }, // Fetch products that belong to the category with catId
+                },
+            },
+            include: {
+                images: true,
+                categories: true,
+                labels: {
+                    include: {
+                        label: true, // Include label details if needed
+                    },
+                },
+            },
+        });
+
+        res.json({ success: true, data: products });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+};
+
+const productBySlug =  async (req,res) => {
+    try {
+        const slug =  req.params.slug;
+
+        const products = await prisma.product.findMany({
+            where: {
+                labels: {
+                    some: {}  // means at least one related label exists
+                }
+            },
+            include: {
+                images: true,
+                categories: true,
+                labels: {
+                    include: {
+                        label: true
+                    },
+                },
+            },
+        });
+
+        res.json({ success: true, data: products });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
 const productDetail = async (req,res) => {
 
     try {
@@ -125,7 +181,9 @@ module.exports = {
     newProducts,
     allProducts,
     productAttributes,
-    productBrands
+    productBrands,
+    productBySlug,
+    productByCatId
 };
 
 

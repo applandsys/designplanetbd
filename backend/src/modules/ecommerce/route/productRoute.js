@@ -10,7 +10,8 @@ router.get('/categories', productController.productCategories);
 router.get('/brands', productController.productBrands);
 router.get('/featured', productController.featuredProducts);
 router.get('/new', productController.newProducts);
-router.get('/detail/:slug', productController.productDetail);
+router.get('/list/:slug', productController.productBySlug);
+router.get('/list/:catid', productController.productByCatId);
 router.get('/attribute/all',productController.productAttributes);
 
 router.get('/reviews/:productId', productReviewController.getReviewsByProductId);

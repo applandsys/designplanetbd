@@ -3,7 +3,9 @@ const router = express.Router();
 const locationController = require('../controller/locationController');
 const siteSettingController = require('../controller/admin/siteSettingController');
 const upload = require("@/middleware/siteLogoUpload");
+const bannerUpload = require('@/middleware/bannerUpload');
 const productAdminController = require("@/modules/ecommerce/controller/admin/productController");
+const {handler} = require("@/modules/ecommerce/controller/admin/siteSettingController");
 
 // BASE LOCATION: // /v1/admin/setting
 
@@ -26,5 +28,22 @@ router.get(
     '/site-setting',
     siteSettingController.getSiteSetting
 );
+
+router.post(
+    '/banner',
+    bannerUpload.fields([
+        { name: 'banner', maxCount: 1 }
+    ]),
+    siteSettingController.handler
+);
+
+// Route for POST (create a new banner)
+router.get('/banner',
+    siteSettingController.handler
+);
+
+// Route for PUT (update an existing banner)
+router.put('/banner/:id', upload.fields([{ name: 'banner', maxCount: 1 }]), siteSettingController.handler);
+
 
 module.exports = router;

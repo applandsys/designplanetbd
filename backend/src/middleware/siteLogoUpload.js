@@ -10,16 +10,13 @@ const storage = multer.diskStorage({
         cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
-        const cleanName = file.originalname
-            .toLowerCase()
-            .replace(/\s+/g, '-')       // replace spaces with -
-            .replace(/[^a-z0-9.-]/g, ''); // remove special chars (safe)
-
-        const uniqueName = Date.now() + '-' + cleanName;
+        const uniqueName = Date.now() + '-' + file.originalname;
         cb(null, uniqueName);
     }
 });
 
-const siteLogo = multer({ storage });
+const siteLogo = multer({
+    storage,
+});
 
 module.exports = siteLogo;

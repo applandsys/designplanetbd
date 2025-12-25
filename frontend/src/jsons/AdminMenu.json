@@ -64,6 +64,11 @@
         "name": "Site Setting",
         "icon": "",
         "href": "/admin/site-setting"
+      },
+      {
+        "name": "Banner Setting",
+        "icon": "",
+        "href": "/admin/banner-setting"
       }
     ]
   }

@@ -7,9 +7,25 @@ export const fetchFeaturedProducts = async () => {
     return data;
 };
 
+export const fetchProductByCatId= async (canId) => {
+    const res = await fetch(`${config.apiBaseUrl}/product/list/${canId}`, {
+        cache: "no-store",
+    });
+    const { data } = await res.json();
+    return data;
+};
 
-export const fetchProductDetail = async (productSlug) => {
-    const res = await fetch(`${config.apiBaseUrl}/product/detail/${productSlug}`, {
+
+export const fetchProductDetail = async (id) => {
+    const res = await fetch(`${config.apiBaseUrl}/product/detail/${id}`, {
+        cache: "no-store",
+    });
+    const { data } = await res.json();
+    return data;
+};
+
+export const fetchProductBySlug= async (slug) => {
+    const res = await fetch(`${config.apiBaseUrl}/product/list/${slug}`, {
         cache: "no-store",
     });
     const { data } = await res.json();
