@@ -3,9 +3,15 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const BodyParser = require("body-parser");
+const csrf = require('csurf');  // Import csrf protection middleware
+const cookieParser = require('cookie-parser');  // To parse cookies in requests
 
 const app = express();
-app.use(cors());
+
+// Set up CSRF protection middleware
+const csrfProtection = csrf({ cookie: true });
+
+app.use(cookieParser());  // Use cookie parser to handle cookies
 
 // ✅ Allow specific domains
 const allowedOrigins = [
@@ -14,17 +20,17 @@ const allowedOrigins = [
     "https://www.designplanetbd.com"
 ];
 
+// CORS configuration
 app.use(cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps, curl)
-        if (!origin) return callback(null, true);
+        if (!origin) return callback(null, true); // Allow no origin (mobile apps, curl)
         if (allowedOrigins.includes(origin)) {
             return callback(null, true);
         } else {
             return callback(new Error("Not allowed by CORS"));
         }
     },
-    credentials: true,
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
 
 // For JSON body parsing
@@ -34,11 +40,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Custom Global Middlewares
 app.get('/', async (req,res)=>{
-        res.end("Its An API Server");
+    res.end("Its An API Server");
 });
 
-
-// Custom Routes
+// Customer Route //
 const customerAuthRoute = require('@/modules/auth/route/customerAuthRoute');
 const userAuthRoute = require('@/modules/auth/route/userAuthRoute');
 const customerRoute = require('@/modules/ecommerce/route/customerRoute');
@@ -51,33 +56,35 @@ const settingRoute =  require('@/modules/ecommerce/route/settingRoute'); // /v1/
 const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute');
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
 
+// CSRF Token Route (you can modify this as per your needs)
+app.get('/csrf-token', csrfProtection, (req, res) => {
+    res.json({ csrfToken: req.csrfToken() });
+});
 
-// Customer Route //
+// Customer Routes
 app.use('/v1/customer', customerRoute );
 app.use('/v1/customer/auth', customerAuthRoute );
 
 // ECOMMERCE
 app.use('/v1/product', productRoute ); // Product and Categories
 app.use('/v1/category', categoryRoute );
- // app.use('/v1/location', locationRoute );
 
-// Vendor
+// Vendor Routes
 app.use('/v1/vendor', vendorRoute );
 
-// ADMIN
+// ADMIN Routes
 app.use('/v1/admin/product', productAdminRoute);
 app.use('/v1/admin/order', orderAdminRoute);
 app.use('/v1/admin/setting', settingRoute );
 
-
-// User
+// User Routes
 app.use('/v1/user/auth', userAuthRoute );
 app.use('/v1/user/stats', userStatsRoute);
-
 app.use('/v1/user/data', userDataRoute);
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
-const port = process.env.PORT;
-app.listen(port, '0.0.0.0',  () => console.log('Server running on 4000 PORT'));
 
+// Start the server
+const port = process.env.PORT || 4000;
+app.listen(port, '0.0.0.0',  () => console.log(`Server running on port ${port}`));
