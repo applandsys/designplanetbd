@@ -52,6 +52,11 @@ const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute')
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
 
 
+app.get('/v1/test', async (req,res)=>{
+    res.end("Its a Test shaua");
+});
+
+
 // Customer Route //
 app.use('/v1/customer', customerRoute );
 app.use('/v1/customer/auth', customerAuthRoute );
