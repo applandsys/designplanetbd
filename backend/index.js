@@ -10,8 +10,8 @@ app.use(cors());
 // ✅ Allow specific domains
 const allowedOrigins = [
     "http://localhost:3000",
-    "https://bdhoms.com",
-    "https://www.bdhoms.com"
+    "https://designplanetbd.com",
+    "https://www.designplanetbd.com"
 ];
 
 app.use(cors({
