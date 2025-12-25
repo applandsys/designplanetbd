@@ -49,7 +49,7 @@ const productAdminRoute = require('@/modules/ecommerce/route/productAdminRoute')
 const orderAdminRoute = require('@/modules/ecommerce/route/orderAdminRoute');
 const vendorRoute = require('@/modules/ecommerce/route/vendorRoute');
 const categoryRoute = require('@/modules/ecommerce/route/categoryRoute');
-const settingRoute =  require('@/modules/ecommerce/route/settingRoute'); // /v1/admin/setting
+const settingRoute =  require('@/modules/ecommerce/route/settingRoute');
 const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute');
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
 
