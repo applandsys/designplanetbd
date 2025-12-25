@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Custom Global Middlewares
 app.get('/', async (req,res)=>{
-        res.end("Its An API Server");
+        res.end("Its An API Server is good");
 });
 
 app.get('/v1/test', async (req,res)=>{
