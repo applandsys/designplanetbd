@@ -36,7 +36,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', async (req,res)=>{
         res.end("Its An API Server");
 });
-app.get('/v1/test', async (req,res)=>{
+
+app.get('/test', async (req,res)=>{
     res.end("Its a Test shaua");
 });
 
