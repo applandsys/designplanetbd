@@ -4,6 +4,42 @@ const express = require('express');
 const cors = require('cors');
 const BodyParser = require("body-parser");
 
+const app = express();
+app.use(cors());
+
+// ✅ Allow specific domains
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://designplanetbd.com",
+    "https://www.designplanetbd.com",
+    "https://backend.designplanetbd.com",
+    "https://www.backend.designplanetbd.com"
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            return callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+}));
+
+// For JSON body parsing
+app.use(express.json());
+app.use(BodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Custom Global Middlewares
+app.get('/', async (req,res)=>{
+        res.end("Its An API Server");
+});
+
+
 // Custom Routes
 const customerAuthRoute = require('@/modules/auth/route/customerAuthRoute');
 const userAuthRoute = require('@/modules/auth/route/userAuthRoute');
@@ -17,38 +53,6 @@ const settingRoute =  require('@/modules/ecommerce/route/settingRoute'); // /v1/
 const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute');
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
 
-const app = express();
-//app.use(cors());
-
-// ✅ Allow specific domains
-const allowedOrigins = [
-    "http://localhost:3000",
-    "https://designplanetbd.com",
-    "https://www.designplanetbd.com"
-];
-
-// app.use(cors({
-//     origin: function (origin, callback) {
-//         // Allow requests with no origin (like mobile apps, curl)
-//         if (!origin) return callback(null, true);
-//         if (allowedOrigins.includes(origin)) {
-//             return callback(null, true);
-//         } else {
-//             return callback(new Error("Not allowed by CORS"));
-//         }
-//     },
-//     credentials: true,
-// }));
-
-// For JSON body parsing
-app.use(express.json());
-app.use(BodyParser.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Custom Global Middlewares
-app.get('/', async (req,res)=>{
-        res.end("Its An API Server");
-});
 
 // Customer Route //
 app.use('/v1/customer', customerRoute );
