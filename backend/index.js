@@ -36,6 +36,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', async (req,res)=>{
         res.end("Its An API Server");
 });
+app.get('/v1/test', async (req,res)=>{
+    res.end("Its a Test shaua");
+});
 
 
 // Custom Routes
@@ -52,9 +55,6 @@ const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute')
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
 
 
-app.get('/v1/test', async (req,res)=>{
-    res.end("Its a Test shaua");
-});
 
 
 // Customer Route //
