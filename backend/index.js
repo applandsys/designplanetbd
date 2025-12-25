@@ -5,27 +5,32 @@ const cors = require('cors');
 const BodyParser = require("body-parser");
 
 const app = express();
-app.use(cors());
-
-// ✅ Allow specific domains
-const allowedOrigins = [
-    "http://localhost:3000",
-    "https://designplanetbd.com",
-    "https://www.designplanetbd.com"
-];
+// app.use(cors());
 
 app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps, curl)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin)) {
-            return callback(null, true);
-        } else {
-            return callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: '*',
     credentials: true,
 }));
+
+// ✅ Allow specific domains
+// const allowedOrigins = [
+//     "http://localhost:3000",
+//     "https://designplanetbd.com",
+//     "https://www.designplanetbd.com"
+// ];
+
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         // Allow requests with no origin (like mobile apps, curl)
+//         if (!origin) return callback(null, true);
+//         if (allowedOrigins.includes(origin)) {
+//             return callback(null, true);
+//         } else {
+//             return callback(new Error("Not allowed by CORS"));
+//         }
+//     },
+//     credentials: true,
+// }));
 
 // For JSON body parsing
 app.use(express.json());
@@ -37,8 +42,8 @@ app.get('/', async (req,res)=>{
         res.end("Its An API Server");
 });
 
-app.get('/test', async (req,res)=>{
-    res.end("Its a Test shaua");
+app.get('/v1/test', async (req,res)=>{
+    res.end("Its a Test ");
 });
 
 
