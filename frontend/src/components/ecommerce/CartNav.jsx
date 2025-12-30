@@ -75,7 +75,6 @@ const CartNav = () => {
 
     return (
         <nav className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 lg:px-6 lg:py-3">
-            {/* Logo Section - Responsive */}
             <div className="flex-shrink-0">
                 <Link href="/" className="flex items-center space-x-2">
                     <Image
@@ -83,7 +82,7 @@ const CartNav = () => {
                         width={120}
                         height={60}
                         alt="Company Logo"
-                        className="h-12 w-auto lg:h-16 xl:h-20 transition-all duration-200"
+                        className="h-6 w-auto lg:h-6 xl:h-12 transition-all duration-200"
                         priority
                     />
                 </Link>

@@ -1,5 +1,4 @@
 import UiCard from "@/components/theme/common/UiCard";
-import {getCategories} from "@/services/ecommerce/getCategories";
 import Image from "next/image";
 import config from "@/config";
 import Link from "next/link";
