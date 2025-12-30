@@ -7,29 +7,27 @@ const SpecialOffer = () => {
     return (
         <section className="w-full bg-white">
             <div className="max-w-7xl mx-auto px-4">
-                {/* Banner Section with Special Offer Overlay */}
+
                 <div className="relative">
-                    {/* Banner Images Container */}
                     <div className="flex flex-col lg:flex-row gap-6">
-                        {/* Left Banner Image */}
                         <div className="lg:w-1/2">
-                            <div className="relative h-80 w-full overflow-hidden rounded-lg group">
+                            <div className="relative h-96 w-full overflow-hidden rounded-lg group">
                                 <Image
-                                    src="/images/products/Sweeter-banner.jpg"
-                                    alt="Sleeveless Collection"
+                                    src="/images/promo/promo-2.jpg"
+                                    alt="Promotional Banner"
                                     fill
-                                    className="object-cover rounded-lg transition-transform duration-500 ease-in-out group-hover:scale-110"
+                                    className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                             </div>
                         </div>
 
-                        {/* Right Banner Image */}
+
                         <div className="lg:w-1/2">
                             <div className="relative h-96 w-full overflow-hidden rounded-lg group">
                                 <Image
-                                    src="/images/products/sleevless-banner.jpg"
-                                    alt="Sweeter Collection"
+                                    src="/images/promo/promo-1.jpg"
+                                    alt="Promotional Banner"
                                     fill
                                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -38,7 +36,7 @@ const SpecialOffer = () => {
                         </div>
                     </div>
 
-                    {/* Special Offer Card - Centered Overlay */}
+
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                         <div className="bg-[#fefaf6] rounded-lg p-6 shadow-2xl border border-[#f5f5f0] text-center w-full max-w-xs">
                             <div className="space-y-3">
@@ -59,9 +57,8 @@ const SpecialOffer = () => {
                     </div>
                 </div>
 
-                {/* Features Grid - Separate Section at Bottom */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-                    {/* 14-Day Returns */}
+
                     <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                             <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
