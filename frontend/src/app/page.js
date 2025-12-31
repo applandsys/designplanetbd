@@ -25,7 +25,6 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Removed margin classes to eliminate gap */}
                 <div className="mx-2">
                     <SpecialOffer/>
                 </div>

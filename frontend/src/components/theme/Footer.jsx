@@ -1,11 +1,26 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {fetchSettingData} from "@/services/site/SettingData";
 
 export default function Footer() {
     const pathname = usePathname();
     const hasWord = pathname.includes('admin');
+
+    const [siteSetting, setSiteSetting] = useState('logo.png');
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    // Close dropdown if clicked outside
+    useEffect(() => {
+        fetchSettingData().then((json) => {
+            if (json.success) {
+                setSiteSetting(json.data);
+            }
+        }).catch(error => setError(error)
+        ).finally(setLoading(false));
+    }, []);
 
     return (
         <>
@@ -20,27 +35,24 @@ export default function Footer() {
                 </footer>
             ) : (
                 <footer className="bg-white text-[#333333] w-full">
-                    {/* Main Footer Content */}
                     <div className="max-w-7xl mx-auto px-4 py-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {/* Contact Information - Left Section */}
                             <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-black">Modave</h3>
+                                <h3 className="text-2xl font-bold text-black">{siteSetting.site_name}</h3>
                                 <div className="space-y-2">
                                     <p className="text-[#333333] text-sm leading-relaxed">
-                                        549 Oak St. Crystal Lake, IL 60014
+                                        {siteSetting.address}
                                     </p>
                                     <button className="text-[#666666] hover:text-[#888888] transition-colors text-sm font-medium uppercase tracking-wide">
                                         GET DIRECTION
                                     </button>
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[#333333] text-sm">info@modave.com</p>
-                                    <p className="text-[#333333] text-sm">315-666-6688</p>
+                                    <p className="text-[#333333] text-sm">{siteSetting.email}</p>
+                                    <p className="text-[#333333] text-sm">{siteSetting.phone}</p>
                                 </div>
                             </div>
 
-                            {/* Information Links */}
                             <div>
                                 <h4 className="text-lg font-semibold mb-4 text-black">Information</h4>
                                 <ul className="space-y-2">

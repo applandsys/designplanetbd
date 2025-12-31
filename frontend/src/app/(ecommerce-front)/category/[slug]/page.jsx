@@ -132,7 +132,6 @@ export default async function CategoryPage({ params, searchParams }) {
             <ClientLogger data={productData} />
             <div className="mt-4">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-2">
-                    {/* Products */}
                     <div className="col-span-1 lg:col-span-4">
                         {filteredProducts.length ? (
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
@@ -144,7 +143,6 @@ export default async function CategoryPage({ params, searchParams }) {
                             <div>No Products found</div>
                         )}
                     </div>
-                    {/* Sidebar */}
                     <div className="col-span-1 flex flex-col justify-start lg:justify-between h-full">
                         <div className="p-1 gap-2">
                             <SidebarCategory categories={categories} />

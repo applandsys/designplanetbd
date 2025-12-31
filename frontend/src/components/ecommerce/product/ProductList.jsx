@@ -16,7 +16,7 @@ const ProductList = ({headLine}) => {
             .finally(() => setLoading(false));
     }, []);
 
-    const featuredProduct = products.filter(item=>item.isFeatured === false);
+    const featuredProduct = products.filter(item=>item.isFeatured === true);
     const hotProducts = products.filter(product =>
         product.labels.some(labelObj => labelObj.label?.slug === "hot-products")
     );
@@ -29,9 +29,9 @@ const ProductList = ({headLine}) => {
 
     return (
         <div className="mt-4">
+
             <div className="mt-4">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6 font-kumbh">Featured Products</h2>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ">
                     {featuredProduct.map((product) => (
                         <ProductGridCard key={product.id || product.slug} product={product} />

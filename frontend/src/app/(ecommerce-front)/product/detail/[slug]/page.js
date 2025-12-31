@@ -1,5 +1,5 @@
 import BreadCrumb from "@/components/ecommerce/BreadChrumb";
-import { fetchProductDetail } from "@/services/ecommerce/GetProducts";
+import {fetchProductBySlug, fetchProductDetail} from "@/services/ecommerce/GetProducts";
 import ProductDetailCard from "@/components/ecommerce/product/ProductDetailCard";
 import SidebarCategory from "@/components/ecommerce/product/SidebarCategory";
 import MoreDetail from "@/components/ecommerce/product/MoreDetail";
@@ -9,12 +9,12 @@ import {getCategories} from "@/services/ecommerce/getCategories";
 
 export default async function ProductDetail({ params }) {
 
-    const product = await fetchProductDetail(params.slug);
+    const product = await fetchProductBySlug(params.slug);
     const categories = await getCategories();
     const breadcrumbItems = [
         { label: "Home", href: "/" },
-        { label: product?.categories[0]?.name || "Unknown", href: "/category-slug" },
-        { label: product.name, href: null }
+        { label: categories[0]?.name || "Unknown", href: "/category-slug" },
+        { label: categories[0]?.name , href: null }
     ];
 
     return (

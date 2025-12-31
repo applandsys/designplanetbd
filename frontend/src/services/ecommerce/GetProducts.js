@@ -16,13 +16,45 @@ export const fetchProductByCatId= async (canId) => {
 };
 
 
-export const fetchProductDetail = async (id) => {
-    const res = await fetch(`${config.apiBaseUrl}/product/detail/${id}`, {
-        cache: "no-store",
+// export const fetchProductDetail = async (id) => {
+//     const res = await fetch(`${config.apiBaseUrl}/product/detail/${id}`, {
+//         cache: "no-store",
+//     });
+//     const { data } = await res.json();
+//     return data;
+// };
+
+export async function fetchProductDetail(slug) {
+    const url = `${config.apiBaseUrl}/product/detail/${id}`;
+
+    const res = await fetch(url, {
+        cache: "no-store", // or next: { revalidate: 60 }
+        headers: { Accept: "application/json" },
     });
-    const { data } = await res.json();
-    return data;
-};
+
+    const contentType = res.headers.get("content-type") || "";
+
+    // If backend sent HTML (error page/redirect), don't try to parse JSON
+    if (!res.ok) {
+        const body = await res.text();
+        throw new Error(
+            `fetchProductDetail failed: ${res.status} ${res.statusText}\n` +
+            `content-type: ${contentType}\n` +
+            `body (first 200 chars): ${body.slice(0, 200)}`
+        );
+    }
+
+    if (!contentType.includes("application/json")) {
+        const body = await res.text();
+        throw new Error(
+            `Expected JSON but got ${contentType}\n` +
+            `body (first 200 chars): ${body.slice(0, 200)}`
+        );
+    }
+
+    return res.json();
+}
+
 
 export const fetchProductBySlug= async (slug) => {
     const res = await fetch(`${config.apiBaseUrl}/product/list/${slug}`, {
