@@ -22,7 +22,6 @@ const SpecialOffer = () => {
                             </div>
                         </div>
 
-
                         <div className="lg:w-1/2">
                             <div className="relative h-96 w-full overflow-hidden rounded-lg group">
                                 <Image
