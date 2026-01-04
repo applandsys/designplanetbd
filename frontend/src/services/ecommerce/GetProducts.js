@@ -64,6 +64,14 @@ export const fetchProductBySlug= async (slug) => {
     return data;
 };
 
+export const fetchProductDetailBySlug= async (slug) => {
+    const res = await fetch(`${config.apiBaseUrl}/product/detail/${slug}`, {
+        cache: "no-store",
+    });
+    const { data } = await res.json();
+    return data;
+};
+
 export const fetchNewProduct = async () => {
     const res = await fetch(`${config.apiBaseUrl}/product/new`, {
         cache: "no-store",
