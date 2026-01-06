@@ -40,8 +40,8 @@ const SpecialOffer = () => {
               - Mobile: normal flow (no overlap)
               - md+: absolute centered overlay
           */}
-                    <div className="mt-4 flex justify-center md:mt-0 md:absolute md:left-1/2 md:top-1/2 md:z-10 md:-translate-x-1/2 md:-translate-y-1/2">
-                        <div className="w-full max-w-sm bg-[#fefaf6] rounded-lg p-4 sm:p-6 shadow-2xl border border-[#f5f5f0] text-center">
+                    <div className="mt-4 flex w-full justify-center md:mt-0 md:absolute md:left-1/2 md:top-1/2 md:z-10 md:-translate-x-1/2 md:-translate-y-1/2">
+                        <div className="w-full sm:max-w-sm bg-[#fefaf6] rounded-lg p-4 sm:p-6 shadow-2xl border border-[#f5f5f0] text-center">
                             <div className="space-y-2 sm:space-y-3">
                                 <h3 className="text-sm sm:text-base font-light text-gray-600 uppercase tracking-wide">
                                     Special Offer!
@@ -61,6 +61,7 @@ const SpecialOffer = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 {/* Features */}
