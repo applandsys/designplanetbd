@@ -218,8 +218,25 @@ const handler = async (req, res) => {
 };
 
 
+const bannerBySlug = async (req, res) => {
+    const { slug } = req.params;  // This is for the `PUT` method (existing banner update)
+    try{
+        const banner = await prisma.banner.findMany({
+            where: { slug: slug },
+        });
+        return res.status(200).json({
+            success: true,
+            data: banner,
+        })
+    } catch (error){
+        res.status(500).json({success: false});
+    }
+
+};
+
 module.exports = {
     siteSetting,
     getSiteSetting,
-    handler
+    handler,
+    bannerBySlug
 };

@@ -44,7 +44,6 @@ const CartNav = () => {
         }).catch(error => setError(error)
         ).finally(setLoading(false));
 
-
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);

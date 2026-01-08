@@ -21,15 +21,12 @@ export default async function ProductDetail({ params }) {
             <BreadCrumb items={breadcrumbItems} />
             <div className="min-h-screen bg-gray-50">
                 <div className="container mx-auto py-4 px-1">
-                    {/* Mobile Layout - Stacked */}
                     <div className="block lg:hidden">
                         <div className="space-y-4">
                             <ProductDetailCard product={product} {...params} />
                             <MoreDetail product={product} {...params} />
                         </div>
                     </div>
-
-                    {/* Desktop Layout - With Sidebar */}
                     <div className="hidden lg:block">
                         <div className="grid grid-cols-4 gap-6">
                             <div className="col-span-3">

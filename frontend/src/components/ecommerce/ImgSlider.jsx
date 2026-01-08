@@ -1,36 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import config from "@/config";
+import {fetchBannerBySlug} from "@/services/site/BannerData";
 
-// Image Data
-const images = [
-    {
-        title: "Don't miss Amazing Grocery Deal",
-        subtTitle: "Sign up for the daily newsletter",
-        path: `${config.publicPath}/images/slider/slider-1.png`,
-        buttonText: "Explore Collection",
-    },
-    {
-        title: "Fresh Vegetables Big Discount",
-        subtTitle: "Save upto 50% off on your first order",
-        path: `${config.publicPath}/images/slider/slider-2.png`,
-        buttonText: "Explore Collection"
-    },
-    {
-        title: "Winter Special Collection",
-        subtTitle: "Get ready for the cold season with exclusive deals",
-        path: `${config.publicPath}/images/slider/slider-3.png`,
-        buttonText: "Explore Collection"
-    },
-];
 
 export default function ImgSlider() {
     const [current, setCurrent] = useState(0);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
     const [showArrows, setShowArrows] = useState(false);
+
+
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const [banners, setBanners] = useState([]);
+
+    useEffect(() => {
+        fetchBannerBySlug('slider').then((json) => {
+            if (json.success) {
+                setBanners(json.data);
+            }
+        }).catch(error => setError(error)
+        ).finally(setLoading(false));
+    }, []);
+
+    if (loading) return <div className="p-4">Fetching Data ...</div>;
+
 
     const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
     const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
@@ -53,6 +51,9 @@ export default function ImgSlider() {
     const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
     const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
 
+
+
+
     return (
         <div
             className="relative w-full overflow-hidden rounded-sm bg-gray-200 group"
@@ -67,17 +68,16 @@ export default function ImgSlider() {
             onMouseEnter={() => setShowArrows(true)}
             onMouseLeave={() => setShowArrows(false)}
         >
-            {/* Slides */}
-            {images.map((item, index) => (
+
+            {banners.length && banners.map((item, index) => (
                 <div
                     key={index}
                     className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
                         index === current ? "opacity-100 z-10" : "opacity-0 z-0"
                     }`}
                 >
-                    {/* Content Container with MASKING */}
+
                     <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 ml-24 sm:ml-32 md:ml-40 overflow-hidden">
-                        {/* Title - Masked animation */}
                         <div
                             className={`transition-all duration-1000 ease-out delay-200 ${
                                 index === current
@@ -86,11 +86,10 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h1 className="text-gray-950 md:text-6xl font-bold drop-shadow-lg mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-md">
-                                {item.title}
+                                {item.title_text}
                             </h1>
                         </div>
 
-                        {/* Subtitle - Masked animation */}
                         <div
                             className={`transition-all duration-1000 ease-out delay-400 ${
                                 index === current
@@ -99,12 +98,11 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h2 className="text-base sm:text-lg md:text-xl text-gray-700 max-w-md mb-6">
-                                {item.subtTitle}
+                                {item.sub_text}
                             </h2>
                         </div>
 
-                        {/* Button - Masked animation */}
-                        {item.buttonText && (
+                        {item.is_button && (
                             <div
                                 className={`transition-all duration-1000 ease-out delay-600 ${
                                     index === current
@@ -116,7 +114,7 @@ export default function ImgSlider() {
                                     <button
                                         className="bg-black text-white rounded-full font-medium px-8 transition-all duration-500 hover:bg-red-600 whitespace-nowrap h-12 flex items-center justify-center relative overflow-hidden"
                                     >
-                                        <span className="z-10 relative">{item.buttonText}</span>
+                                        <span className="z-10 relative">Get Now</span>
                                         <div
                                             className="absolute right-0 top-0 bottom-0 w-0 transition-all duration-500 group-hover/btn:w-10 flex items-center justify-center overflow-hidden"
                                         >
@@ -139,10 +137,8 @@ export default function ImgSlider() {
                             </div>
                         )}
                     </div>
-
-                    {/* Background Image */}
                     <Image
-                        src={item.path}
+                        src={`${config.publicPath}/images/banners/${item.image}`}
                         alt={`Slide ${index + 1}`}
                         fill
                         className="object-cover rounded-sm"
@@ -152,7 +148,6 @@ export default function ImgSlider() {
                 </div>
             ))}
 
-            {/* Left Arrow */}
             <button
                 onClick={prevSlide}
                 className={`arrow-button absolute top-1/2 -left-12 transform -translate-y-1/2 bg-transparent border border-black rounded-full p-3 z-30 transition-all duration-500 ease-in-out group-hover:left-4 hover:bg-black hover:border-black ${
@@ -170,7 +165,6 @@ export default function ImgSlider() {
                 </svg>
             </button>
 
-            {/* Right Arrow */}
             <button
                 onClick={nextSlide}
                 className={`arrow-button absolute top-1/2 -right-12 transform -translate-y-1/2 bg-transparent border border-black rounded-full p-3 z-30 transition-all duration-500 ease-in-out group-hover:right-4 hover:bg-black hover:border-black ${
@@ -188,9 +182,8 @@ export default function ImgSlider() {
                 </svg>
             </button>
 
-            {/* Dots */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3 z-30">
-                {images.map((_, index) => (
+                {banners && banners.map((_, index) => (
                     <button
                         key={index}
                         onClick={() => goToSlide(index)}

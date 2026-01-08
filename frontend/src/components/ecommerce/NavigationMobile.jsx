@@ -1,18 +1,35 @@
 'use client';
 
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaPinterestP } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import { FiMenu } from 'react-icons/fi';
 import Image from 'next/image';
+import {fetchSettingData} from "@/services/site/SettingData";
+import config from "@/config";
 
 export default function NavbarLeft() {
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const [siteLogo, setSiteLogo] = useState('logo.png');
+
+  useEffect(() => {
+    fetchSettingData().then((json) => {
+      if (json.success) {
+        setSiteLogo(json.data.logo);
+      }
+    }).catch(error => setError(error)
+    ).finally(setLoading(false));
+  }, []);
+
+  if (loading) return <div className="p-4">Fetching Data ...</div>;
 
   return (
     <>
       <nav className="relative">
-        {/* AdminSidebar Backdrop */}
+
         {isOpen && (
           <div
             className="fixed inset-0 bg-black bg-opacity-40 z-40"
@@ -20,17 +37,17 @@ export default function NavbarLeft() {
           />
         )}
 
-        {/* AdminSidebar Drawer */}
+
         <div
           className={`fixed top-0 left-0 h-full w-[350px] bg-white shadow-lg border border-green-100 p-4 z-50 transform transition-transform duration-300 ease-in-out ${
             isOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
-          {/* Header */}
+
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Image
-                src="/images/logo.png"
+                src={`${config.publicPath}/${siteLogo}`}
                 width={100}
                 height={100}
                 alt="logo"

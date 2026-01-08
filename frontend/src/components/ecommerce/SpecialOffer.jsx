@@ -1,19 +1,37 @@
 "use client";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
+import config from "@/config";
+import {fetchBannerBySlug} from "@/services/site/BannerData";
 
 const SpecialOffer = () => {
+
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const [banners, setBanners] = useState('logo.png');
+
+    useEffect(() => {
+        fetchBannerBySlug('promo').then((json) => {
+            if (json.success) {
+                setBanners(json.data);
+            }
+        }).catch(error => setError(error)
+        ).finally(setLoading(false));
+    }, []);
+
+    if (loading) return <div className="p-4">Fetching Data ...</div>;
+
     return (
         <section className="w-full bg-white py-6 sm:py-10">
             <div className="mx-auto max-w-7xl px-4">
                 <div className="relative">
-                    {/* Images */}
                     <div className="flex flex-col gap-4 lg:flex-row lg:gap-6">
                         <div className="lg:w-1/2">
                             <div className="relative h-56 w-full overflow-hidden rounded-lg group sm:h-72 md:h-96">
                                 <Image
-                                    src="/images/promo/promo-2.jpg"
+                                    src={`${config.publicPath}/images/banners/${banners[0].image}`}
                                     alt="Promotional Banner"
                                     fill
                                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
@@ -26,7 +44,7 @@ const SpecialOffer = () => {
                         <div className="lg:w-1/2">
                             <div className="relative h-56 w-full overflow-hidden rounded-lg group sm:h-72 md:h-96">
                                 <Image
-                                    src="/images/promo/promo-1.jpg"
+                                    src={`${config.publicPath}/images/banners/${banners[1].image}`}
                                     alt="Promotional Banner"
                                     fill
                                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
@@ -36,10 +54,6 @@ const SpecialOffer = () => {
                         </div>
                     </div>
 
-                    {/* Offer Card
-              - Mobile: normal flow (no overlap)
-              - md+: absolute centered overlay
-          */}
                     <div className="mt-4 flex w-full justify-center md:mt-0 md:absolute md:left-1/2 md:top-1/2 md:z-10 md:-translate-x-1/2 md:-translate-y-1/2">
                         <div className="w-full sm:max-w-sm bg-[#fefaf6] rounded-lg p-4 sm:p-6 shadow-2xl border border-[#f5f5f0] text-center">
                             <div className="space-y-2 sm:space-y-3">
