@@ -41,6 +41,30 @@ const getProductBySlug = async (productSlug) => {
     });
 }
 
+const getProductDetailBySlug = async (productSlug) => {
+    return prisma.product.findFirst({
+        where: {
+            slug: productSlug
+        },
+        include: {
+            images: true,
+            ratings: true,
+            labels: {
+                include: {
+                    label: true,
+                },
+            },
+            categories: true,
+            productLocations: true,
+            productVariants: {
+                include: {
+                    variantAttributes: true
+                }
+            }
+        },
+    });
+}
+
 const getProductLabelsModel = async () => {
     return prisma.label.findMany();
 }
@@ -58,5 +82,6 @@ module.exports = {
     getProductById,
     getProductLabelsModel,
     getProductAttribute,
-    getProductBySlug
+    getProductBySlug,
+    getProductDetailBySlug
 }

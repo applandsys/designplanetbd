@@ -1,15 +1,14 @@
 import BreadCrumb from "@/components/ecommerce/BreadChrumb";
-import {fetchProductBySlug, fetchProductDetail} from "@/services/ecommerce/GetProducts";
+import {fetchProductDetailBySlug} from "@/services/ecommerce/GetProducts";
 import ProductDetailCard from "@/components/ecommerce/product/ProductDetailCard";
 import SidebarCategory from "@/components/ecommerce/product/SidebarCategory";
 import MoreDetail from "@/components/ecommerce/product/MoreDetail";
 import NewProducts from "@/components/ecommerce/widgets/NewProduct";
-import {SnackbarProvider} from "@/components/ui/SnackbarProvider";
 import {getCategories} from "@/services/ecommerce/getCategories";
 
 export default async function ProductDetail({ params }) {
 
-    const product = await fetchProductBySlug(params.slug);
+    const product = await fetchProductDetailBySlug(params.slug);
     const categories = await getCategories();
     const breadcrumbItems = [
         { label: "Home", href: "/" },

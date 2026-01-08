@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const {getProductById, getProductAttribute, getProductBySlug} = require("../model/productModel");
 const {getAllCategories, getAllBrands, insertBrand} = require("../model/categoryModel");
+const {getProductDetailBySlug} = require("@/modules/ecommerce/model/productModel");
 const prisma = new PrismaClient();
 
 const allProducts =  async (req,res) => {
@@ -101,12 +102,41 @@ const productDetail = async (req,res) => {
 
     try {
         const { slug } = req.params;
-
-        console.log("P : ",slug);
-
         const product =  await getProductBySlug(slug);
+        if (!product) {
+            return res.status(404).json({success: false, message: 'Product not found'});
+        }
+        const productAttribute = await prisma.productVariant.findMany({
+            where: {
+                productId: product.id,
+            },
+            include: {
+                variantAttributes: {
+                    include: {
+                        attributeValue: {
+                            include: {
+                                attribute: true,
+                            },
+                        },
+                    },
+                },
+                CombinedVariantAttribute: true,
+            }
+        });
+        const dataSet = {...product, attributes: productAttribute}
+        res.json({success: true, data: dataSet});
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
 
+// Product Detail
+const productDetailBySlug = async (req,res) => {
 
+    try {
+        const { slug } = req.params;
+
+        const product =  await getProductDetailBySlug(slug);
 
         if (!product) {
             return res.status(404).json({success: false, message: 'Product not found'});
@@ -129,12 +159,9 @@ const productDetail = async (req,res) => {
                 CombinedVariantAttribute: true,
             }
         });
-
         const dataSet = {...product, attributes: productAttribute}
         res.json({success: true, data: dataSet});
     } catch (error) {
-
-        console.log(error);
         res.status(500).json({ success: false, message: 'Server error' });
     }
 }
@@ -183,6 +210,7 @@ module.exports = {
     productAttributes,
     productBrands,
     productBySlug,
+    productDetailBySlug,
     productByCatId
 };
 

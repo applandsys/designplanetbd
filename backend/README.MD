@@ -131,10 +131,40 @@ v1/category/products/category-slug (Category with product with category-slug)
 postgresql://postgres:Dhaka@1230@localhost:5432/expertcom
 ```
 
-| Field        | Value        | Description                              |
-| ------------ | ------------ | ---------------------------------------- |
-| **Host**     | `localhost`  | Your PostgreSQL server (local machine)   |
-| **Port**     | `5432`       | Default PostgreSQL port                  |
-| **User**     | `postgres`   | Username used to log in                  |
-| **Password** | `Dhaka@1230` | Password for the user                    |
-| **Database** | `expertcom`  | The database name you want to connect to |
+
+1️⃣ Prerequisites (do this once)
+🔹 Update server
+sudo apt update && sudo apt upgrade -y
+
+🔹 Install Node.js (LTS)
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v
+npm -v
+
+
+sudo chown -R $USER:$USER /var/www/designplanetbd
+
+
+
+pm2 start index.js --name backend-designplanet
+pm2 save
+pm2 status
+
+
+sudo nano /etc/nginx/sites-available/backend.designplanetbd.com
+
+server {
+    server_name backend.designplanetbd.com;
+
+    location / {
+        proxy_pass http://localhost:4000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+sudo nginx -t
