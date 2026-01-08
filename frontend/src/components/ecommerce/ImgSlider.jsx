@@ -19,12 +19,15 @@ export default function ImgSlider() {
     const [banners, setBanners] = useState([]);
 
     useEffect(() => {
-        fetchBannerBySlug('slider').then((json) => {
-            if (json.success) {
-                setBanners(json.data);
-            }
-        }).catch(error => setError(error)
-        ).finally(setLoading(false));
+        setLoading(true);
+        fetchBannerBySlug("slider")
+            .then((json) => {
+                if (json.success) {
+                    setBanners(json.data);
+                }
+            })
+            .catch((error) => setError(error))
+            .finally(() => setLoading(false));
     }, []);
 
     if (loading) return <div className="p-4">Fetching Data ...</div>;
@@ -34,22 +37,34 @@ export default function ImgSlider() {
     const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
 
     const handleTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
+        if (!touchStart || !touchEnd || banners.length === 0) return;
+
         const distance = touchStart - touchEnd;
         const minSwipeDistance = 50;
 
         if (distance > minSwipeDistance) {
-            setCurrent((prev) => (prev + 1) % images.length);
+            setCurrent((prev) => (prev + 1) % banners.length);
         } else if (distance < -minSwipeDistance) {
-            setCurrent((prev) => (prev - 1 + images.length) % images.length);
+            setCurrent((prev) => (prev - 1 + banners.length) % banners.length);
         }
+
         setTouchStart(null);
         setTouchEnd(null);
     };
 
+    const nextSlide = () => {
+        if (banners.length === 0) return;
+        setCurrent((prev) => (prev + 1) % banners.length);
+    };
+
+    const prevSlide = () => {
+        if (banners.length === 0) return;
+        setCurrent((prev) => (prev - 1 + banners.length) % banners.length);
+    };
+
+
     const goToSlide = (index) => setCurrent(index);
-    const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
-    const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+
 
 
 
