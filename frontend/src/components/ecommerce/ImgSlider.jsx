@@ -62,12 +62,7 @@ export default function ImgSlider() {
         setCurrent((prev) => (prev - 1 + banners.length) % banners.length);
     };
 
-
     const goToSlide = (index) => setCurrent(index);
-
-
-
-
 
     return (
         <div

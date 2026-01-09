@@ -32,8 +32,8 @@ const PromoCards = () => {
                 key={index}
                 className={`flex flex-col ${banner.backgroundColor}`}
             >
-                <div className="w-[300px] absolute">
-                    <h3 className="text-xl font-semibold text-gray-800 mb-4  font-quicksand  mt-8 ml-8">{banner.title_text}</h3>
+                <div className="absolute">
+                    <h3 className="text-xl font-semibold   mb-4  font-quicksand  mt-8 ml-8 text-white">{banner.title_text}</h3>
                 </div>
 
                 <Image
@@ -43,10 +43,10 @@ const PromoCards = () => {
                     height={300} 
                     className="h-full object-contain mx-auto rounded-xl" // Added rounded-xl here
                 />
-                <div className="absolute bottom-8 ml-8">
+                <div className="absolute bottom-4 left-10">
                     {
                         banner.url && (
-                            <Link className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm w-max self-start" href={banner.url}>
+                            <Link className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm w-max " href={banner.url}>
                                 Shop Now →
                             </Link>
                         )
