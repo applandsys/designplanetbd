@@ -73,7 +73,7 @@ const CartNav = () => {
     if (error) return <div className="p-4 text-red-500">Error Happened contact Admin</div>;
 
     return (
-        <nav className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 lg:px-6 lg:py-3">
+        <nav className="flex flex-col lg:flex-row items-center justify-between lg:py-3">
             <div className="flex-shrink-0">
                 <Link href="/" className="flex items-center space-x-2">
                     <Image
