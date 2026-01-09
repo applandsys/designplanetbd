@@ -30,7 +30,7 @@ const PromoCards = () => {
         {banners.length && banners.map((banner, index) => (
             <div
                 key={index}
-                className={`flex flex-col ${banner.backgroundColor}`}
+                className={`flex flex-col bg-[${banner.backgroundColor}]`}
             >
                 <div className="absolute">
                     <h3 className="text-xl font-semibold   mb-4  font-quicksand  mt-8 ml-8 text-white">{banner.title_text}</h3>
