@@ -78,9 +78,9 @@ const CartNav = () => {
                 <Link href="/" className="flex items-center space-x-2">
                     <Image
                         src={`${config.publicPath}/${siteLogo}`}
-                        width={120}
-                        height={60}
-                        alt="Company Logo"
+                        width={600}
+                        height={600}
+                        alt="Logo"
                         className="h-6 w-auto lg:h-6 xl:h-12 transition-all duration-200"
                         priority
                     />
