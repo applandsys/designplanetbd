@@ -70,7 +70,7 @@ const FilterSearch = ({ highestPriceProduct = 0, lowestPriceProduct = 0 }) => {
         }
 
         // if (locId) {
-        //     // We only store the last level id in the URL.
+        //     // We only store the last level [bannerId] in the URL.
         //     // You might want to reconstruct the chain if your UI needs it.
         //     setSelectedPrimaryLocation(locId); // optional
         // }

@@ -181,7 +181,7 @@ const ProductAddEditForm = ({ productId }) => {
                     return {
                         id: index + 1,  // Just assigning an incremental ID for each attribute
                         productVariantId: null,  // You can change this to dynamically match each product variant
-                        attributeValueId: item.id,  // Assuming `id` in selectedAttributes is the `attributeValueId`
+                        attributeValueId: item.id,  // Assuming `[bannerId]` in selectedAttributes is the `attributeValueId`
                         attributeValue: {
                             id: item.id,
                             value: item.value,

@@ -228,8 +228,8 @@ module.exports = {
       isFeatured: true,
       categories: {
         connect: [
-          { id: 1 },
-          { id: 2 },
+          { [bannerId]: 1 },
+          { [bannerId]: 2 },
         ],
       },
       images: {

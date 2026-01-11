@@ -20,7 +20,7 @@ router.post(
 );
 
 router.put(
-    '/edit-product-category/:id',  // Use :id for category identification
+    '/edit-product-category/:id',  // Use :[bannerId] for category identification
     upload.fields([
         { name: 'image', maxCount: 1 },
         { name: 'icon', maxCount: 1 }

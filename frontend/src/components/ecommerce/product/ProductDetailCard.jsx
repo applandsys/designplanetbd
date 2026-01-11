@@ -43,7 +43,7 @@ const ProductDetailCard = ({ product }) => {
         const colorAttributes = [];
 
         // Expected structure in your old code:
-        // product.attributes -> [{ variantAttributes: [{ attributeValue: { attribute: {name}, id, codeNumber } }]}]
+        // product.attributes -> [{ variantAttributes: [{ attributeValue: { attribute: {name}, [bannerId], codeNumber } }]}]
         for (const p of attrs) {
             for (const a of p?.variantAttributes ?? []) {
                 const name = a?.attributeValue?.attribute?.name;

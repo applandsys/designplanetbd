@@ -8,7 +8,7 @@ const allUserOrder = async (customerId) => {
                 customerId,
             },
             select: {
-                id: true,          // keep order id (or any other fields you need)
+                id: true,          // keep order [bannerId] (or any other fields you need)
                 createdAt: true,   // optional
                 totalAmount: true,   // optional
                 status: true,   // optional

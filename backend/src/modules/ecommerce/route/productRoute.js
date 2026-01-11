@@ -17,8 +17,8 @@ router.get('/attribute/all',productController.productAttributes);
 
 router.get('/reviews/:productId', productReviewController.getReviewsByProductId);
 
-// router.get('/:id', userController.userById);
-// router.get('/tree/:id', userController.userTree);
+// router.get('/:[bannerId]', userController.userById);
+// router.get('/tree/:[bannerId]', userController.userTree);
 // router.get('/insert', userController.userInsert);
 
 module.exports = router;

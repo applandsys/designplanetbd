@@ -147,19 +147,24 @@ const handler = async (req, res) => {
                     where: { id: parseInt(id) },
                 });
 
+                let imageName = null;
+                if (req.files?.banner?.length > 0) {
+                    imageName = req.files.banner[0].filename;
+                }
+
                 if (!existingBanner) {
                     return res.status(404).json({ success: false, message: 'Banner not found' });
                 }
 
-                let imageName = existingBanner.image;
-                if (req.files?.banner?.length > 0) {
-                    imageName = req.files.banner[0].filename;
-                    // Optionally delete old image if replaced
-                    const oldImagePath = path.join(process.cwd(), 'public/images/banners', existingBanner.image);
-                    if (fs.existsSync(oldImagePath)) {
-                        fs.unlinkSync(oldImagePath);
-                    }
-                }
+              //  let imageName = existingBanner.image;
+                // if (req.files?.banner?.length > 0) {
+                //     imageName = req.files.banner[0].filename;
+                //     // Optionally delete old image if replaced
+                //     const oldImagePath = path.join(process.cwd(), 'public/images/banners', existingBanner.image);
+                //     if (fs.existsSync(oldImagePath)) {
+                //         fs.unlinkSync(oldImagePath); // Delete the old image
+                //     }
+                // }
 
                 const updatedBanner = await prisma.banner.update({
                     where: { id: parseInt(id) },
@@ -198,7 +203,7 @@ const handler = async (req, res) => {
                 // Delete the banner image file
                 const imagePath = path.join(process.cwd(), 'public/images/banners', existingBanner.image);
                 if (fs.existsSync(imagePath)) {
-                    fs.unlinkSync(imagePath);
+                    fs.unlinkSync(imagePath); // Delete the banner image
                 }
 
                 // Delete the banner record from DB
@@ -218,6 +223,7 @@ const handler = async (req, res) => {
 };
 
 
+
 const bannerBySlug = async (req, res) => {
     const { slug } = req.params;  // This is for the `PUT` method (existing banner update)
     try{
@@ -234,9 +240,58 @@ const bannerBySlug = async (req, res) => {
 
 };
 
+const bannerById = async (req, res) => {
+    const { id } = req.params;  // This is for the `PUT` method (existing banner update)
+
+    try{
+        const banner = await prisma.banner.findFirst({
+            where: { id: parseInt(id) },
+        });
+        return res.status(200).json({
+            success: true,
+            data: banner,
+        })
+    } catch (error){
+        res.status(500).json({success: false});
+    }
+
+};
+
+const deleteBanner = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const existingBanner = await prisma.banner.findUnique({
+            where: { id: parseInt(id) },
+        });
+
+        if (!existingBanner) {
+            return res.status(404).json({ success: false, message: 'Banner not found' });
+        }
+
+        // Delete the image from the server
+        const imagePath = path.join(process.cwd(), 'public/images/banners', existingBanner.image);
+        if (fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath);  // Delete image file
+        }
+
+        // Delete the banner record from the database
+        await prisma.banner.delete({
+            where: { id: parseInt(id) },
+        });
+
+        return res.status(200).json({ success: true, message: 'Banner deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, error: error.message });
+    }
+};
+
+
 module.exports = {
     siteSetting,
     getSiteSetting,
     handler,
-    bannerBySlug
+    bannerBySlug,
+    deleteBanner,
+    bannerById
 };

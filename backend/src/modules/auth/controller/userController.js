@@ -56,10 +56,10 @@ const userList =  async (req,res) => {
 }
 
 // const userById = async (req, res) => {
-//     const { id } = req.params;
+//     const { [bannerId] } = req.params;
 //     try {
 //         const customer = await prisma.customer.findUnique({
-//             where: { id: parseInt(id) },
+//             where: { [bannerId]: parseInt([bannerId]) },
 //         });
 //
 //         if (!customer) {

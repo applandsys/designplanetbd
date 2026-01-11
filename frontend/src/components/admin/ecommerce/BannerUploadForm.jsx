@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import config from "@/config"; // You may need this to get the ID from the URL
+import { useRouter } from 'next/navigation';
 
 const BannerUploadForm = ({ bannerId, getBanners }) => {
+
     const [submitting, setSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -15,24 +16,24 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
     });
     const [bannerPreview, setBannerPreview] = useState(null);
 
-    //const router = useRouter();
+    const router = useRouter();
 
-    // Fetch the banner data when bannerId is passed
+    // Fetch the banner data when [bannerId] is passed
     useEffect(() => {
         if (bannerId) {
             // Fetch banner data for the provided ID
-            fetch(`${config.apiBaseUrl}/admin/setting/banner/${bannerId}`)
+            fetch(`${config.apiBaseUrl}/admin/setting/banner/byid/${bannerId}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.success) {
                         setFormData({
                             name: data.data.name,
-                            title: data.data.title,
-                            sub_title: data.data.sub_title,
+                            title: data.data.title_text,
+                            sub_title: data.data.sub_text,
                             slug: data.data.slug,
-                            background_color: data.data.background_color,
+                            background_color: data.data.backgroundColor,
                         });
-                        setBannerPreview(`/images/banners/${data.data.image}`);
+                        setBannerPreview(`${config.publicPath}/images/banners/${data.data.image}`);
                     }
                 });
         }
@@ -80,6 +81,7 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
 
         if (response.ok) {
             getBanners();
+            router.push("/admin/banner-setting"); // Redirect to the banner list page after submission
         } else {
             const result = await response.json();
             console.error(result.error || 'An error occurred');
@@ -152,13 +154,14 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
                     />
                 </div>
 
+                {/* Banner Image Preview */}
                 <div className="md:col-span-2">
                     <label className="block text-sm font-medium mb-1">Banner</label>
                     {bannerPreview && (
                         <img
                             src={bannerPreview}
                             alt="Banner Preview"
-                            className="h-16 mb-2 object-cover"
+                            className="h-32 mb-2 object-cover w-full"
                         />
                     )}
                     <input
@@ -170,16 +173,12 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
                     />
                 </div>
 
-                {/* Submit */}
+                {/* Submit Button */}
                 <div className="md:col-span-2 flex justify-end">
                     <button
                         type="submit"
                         disabled={submitting}
-                        className={`px-6 py-2 rounded-lg text-white ${
-                            submitting
-                                ? "bg-gray-400"
-                                : "bg-blue-500 hover:bg-blue-400"
-                        }`}
+                        className={`px-6 py-2 rounded-lg text-white ${submitting ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-400"}`}
                     >
                         {submitting ? "Submitting..." : bannerId ? "Update Banner" : "Create Banner"}
                     </button>
