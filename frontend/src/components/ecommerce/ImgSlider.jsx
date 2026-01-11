@@ -65,18 +65,20 @@ export default function ImgSlider() {
     const goToSlide = (index) => setCurrent(index);
 
     return (
-        <div className="relative w-full overflow-hidden rounded-sm bg-gray-200 group"
-             style={{
-                 height: '0',
-                 paddingBottom: '54.92%', // This maintains the 1448.570×796 aspect ratio (796/1448.570 = 0.5492)
-                 maxHeight: '796px'
-             }}
-             onTouchStart={handleTouchStart}
-             onTouchMove={handleTouchMove}
-             onTouchEnd={handleTouchEnd}
-             onMouseEnter={() => setShowArrows(true)}
-             onMouseLeave={() => setShowArrows(false)}
+        <div
+            className="relative w-full overflow-hidden rounded-sm bg-gray-200 group"
+            style={{
+                height: '0',
+                paddingBottom: '54.92%', // This maintains the 1448.570×796 aspect ratio (796/1448.570 = 0.5492)
+                maxHeight: '796px'
+            }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseEnter={() => setShowArrows(true)}
+            onMouseLeave={() => setShowArrows(false)}
         >
+
             {banners.length && banners.map((item, index) => (
                 <div
                     key={index}
@@ -84,6 +86,7 @@ export default function ImgSlider() {
                         index === current ? "opacity-100 z-10" : "opacity-0 z-0"
                     }`}
                 >
+
                     <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 ml-24 sm:ml-32 md:ml-40 overflow-hidden">
                         <div
                             className={`transition-all duration-1000 ease-out delay-200 ${
@@ -154,6 +157,55 @@ export default function ImgSlider() {
                     />
                 </div>
             ))}
+
+            <button
+                onClick={prevSlide}
+                className={`arrow-button absolute top-1/2 -left-12 transform -translate-y-1/2 bg-transparent border border-black rounded-full p-3 z-30 transition-all duration-500 ease-in-out group-hover:left-4 hover:bg-black hover:border-black ${
+                    showArrows ? "left-4" : "-left-12"
+                }`}
+                aria-label="Previous slide"
+            >
+                <svg
+                    className="w-5 h-5 transition-colors duration-300 text-black hover:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <button
+                onClick={nextSlide}
+                className={`arrow-button absolute top-1/2 -right-12 transform -translate-y-1/2 bg-transparent border border-black rounded-full p-3 z-30 transition-all duration-500 ease-in-out group-hover:right-4 hover:bg-black hover:border-black ${
+                    showArrows ? "right-4" : "-right-12"
+                }`}
+                aria-label="Next slide"
+            >
+                <svg
+                    className="w-5 h-5 transition-colors duration-300 text-black hover:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3 z-30">
+                {banners && banners.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`relative flex items-center justify-center cursor-pointer transition-all duration-300 focus:outline-none select-none ${
+                            index === current ? "w-4 h-4" : "w-2.5 h-2.5"
+                        }`}
+                    >
+                        <div className="absolute inset-0 rounded-full border border-black transition-all duration-300"></div>
+                        {index === current && <div className="w-1.5 h-1.5 bg-black rounded-full"></div>}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }
