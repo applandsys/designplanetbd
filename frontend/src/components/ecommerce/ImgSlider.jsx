@@ -104,7 +104,7 @@ export default function ImgSlider() {
                                     : "translate-x-[-50%] opacity-70"
                             }`}
                         >
-                            <h2 className="text-base sm:text-lg md:text-xl text-gray-700 max-w-md mb-6">
+                            <h2 className="text-base sm:text-lg md:text-xl text-gray-300 max-w-md mb-6">
                                 {item.sub_text}
                             </h2>
                         </div>
