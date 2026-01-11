@@ -92,7 +92,7 @@ export default function ImgSlider() {
                                     : "translate-x-[-50%] opacity-70"
                             }`}
                         >
-                            <h1 className="text-gray-300 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg mb-4 text-center lg:text-left w-full">
+                            <h1 className="text-gray-300 text-3xl  sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg mb-4 text-center md:text-left lg:text-left w-full">
                                 {item.title_text}
                             </h1>
                         </div>
