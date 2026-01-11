@@ -88,6 +88,7 @@ export default function ImgSlider() {
                 >
 
                     <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 ml-24 sm:ml-32 md:ml-40 overflow-hidden">
+
                         <div
                             className={`transition-all duration-1000 ease-out delay-200 ${
                                 index === current
@@ -95,7 +96,7 @@ export default function ImgSlider() {
                                     : "translate-x-[-50%] opacity-70"
                             }`}
                         >
-                            <h1 className="text-gray-300 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg mb-4 max-w-md text-center">
+                            <h1 className="text-gray-300 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg mb-4 text-center w-full">
                                 {item.title_text}
                             </h1>
                         </div>
