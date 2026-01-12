@@ -19,9 +19,7 @@ const featuredProducts =  async (req,res) => {
 
         const products = await prisma.product.findMany({
             where: {
-                labels: {
-                    some: {}  // means at least one related label exists
-                }
+                isFeatured: true
             },
             include: {
                 images: true,
@@ -33,7 +31,6 @@ const featuredProducts =  async (req,res) => {
                 },
             },
         });
-
 
         res.json({ success: true, data: products });
     } catch (error) {

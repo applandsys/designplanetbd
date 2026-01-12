@@ -7,6 +7,7 @@ export const fetchFeaturedProducts = async () => {
     return data;
 };
 
+
 export const fetchProductByCatId= async (canId) => {
     const res = await fetch(`${config.apiBaseUrl}/product/list/${canId}`, {
         cache: "no-store",
