@@ -16,9 +16,9 @@ const safeParseJsonObject = (maybeJson) => {
     try { return JSON.parse(maybeJson); } catch { return undefined; }
 };
 
-const toNumberOr = (value) => {
+const toNumberOr = (value, fallback=0) => {
     const num = Number(value);
-    return isNaN(num) ? null : num;
+    return isNaN(num) ? fallback : num;
 };
 
 module.exports ={
