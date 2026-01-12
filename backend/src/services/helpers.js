@@ -16,10 +16,9 @@ const safeParseJsonObject = (maybeJson) => {
     try { return JSON.parse(maybeJson); } catch { return undefined; }
 };
 
-const toNumberOr = (v, fallback = 0) => {
-    const n = typeof v === 'string' ? v.trim() : v;
-    const num = Number(n);
-    return Number.isFinite(num) ? num : fallback;
+const toNumberOr = (value) => {
+    const num = Number(value);
+    return isNaN(num) ? null : num;
 };
 
 module.exports ={
