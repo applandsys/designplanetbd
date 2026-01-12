@@ -319,7 +319,7 @@ const ProductAddEditForm = ({ productId }) => {
         form.append('categoryId', formData.categoryId);
         form.append('buyPrice', formData.buyPrice);
         form.append('sellPrice', formData.sellPrice);
-        form.append('discount', formData.discountPrice || 0);
+        form.append('discount', formData.discount || 0);
         form.append('point', formData.point || 0);
         form.append('isFeatured', formData.isFeatured || false);
         form.append('attributeProducts', JSON.stringify(addedProductAttributes));
