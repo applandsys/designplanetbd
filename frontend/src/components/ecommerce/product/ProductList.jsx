@@ -33,10 +33,6 @@ const ProductList = ({headLine}) => {
             <div className="mt-4">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6 font-kumbh">Featured Products</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ">
-
-                   Product:  {JSON.stringify(products)}
-                   Featured:  {JSON.stringify(featuredProduct)}
-
                     {featuredProduct.map((product) => (
                         <ProductGridCard key={product.id || product.slug} product={product} />
                     ))}
