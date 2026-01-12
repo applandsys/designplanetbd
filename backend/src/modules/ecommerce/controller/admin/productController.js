@@ -212,6 +212,8 @@ const addProduct = async (req, res) => {
         const sell = toNumberOr(sellPrice, 0);
         const discountAmount = discountPct && sell ? getPercentToFlat(discountPct, sell) : 0;
 
+        console.log("Discount Amount", discountAmount);
+
         let newProduct;
 
         if (productId) {
