@@ -7,6 +7,13 @@ export const fetchFeaturedProducts = async () => {
     return data;
 };
 
+export const fetchProductsBySlug = async (slug) => {
+    const res = await fetch(`${config.apiBaseUrl}/product/label/${slug}`);
+    if (!res.ok) throw new Error('Failed to fetch Product');
+    const {data} = await res.json();
+    return data;
+};
+
 
 export const fetchProductByCatId= async (canId) => {
     const res = await fetch(`${config.apiBaseUrl}/product/list/${canId}`, {

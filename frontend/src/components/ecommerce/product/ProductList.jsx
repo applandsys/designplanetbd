@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { fetchFeaturedProducts } from "@/services/ecommerce/GetProducts";
+import {fetchFeaturedProducts, fetchProductsBySlug} from "@/services/ecommerce/GetProducts";
 import ProductGridCard from "@/components/ecommerce/product/ProducGridCard";
 
 const ProductList = ({headLine}) => {
     const [products, setProducts] = useState([]);
+    const [hotProducts, setHotProducts] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -14,12 +15,14 @@ const ProductList = ({headLine}) => {
             .then((data) => setProducts(data))
             .catch((error) => setError(error))
             .finally(() => setLoading(false));
+        fetchProductsBySlug('hot-products')
+        .then((data) => setHotProducts(data))
+        .catch((error) => setError(error))
+        .finally(() => setLoading(false));
     }, []);
 
     const featuredProduct = products.filter(item=>item.isFeatured === true);
-    const hotProducts = products.filter(product =>
-        product.labels.some(labelObj => labelObj.label?.slug === "hot-products")
-    );
+
     const mostPopular = products.filter(product =>
         product.labels.some(labelObj => labelObj.label?.slug === "most-popular")
     );
