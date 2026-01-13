@@ -15,6 +15,8 @@ router.get('/detail/:slug', productController.productDetailBySlug);
 router.get('/list/:catid', productController.productByCatId);
 router.get('/attribute/all',productController.productAttributes);
 
+router.get('/label/:labelSlug', productController.labelWiseProducts);
+
 router.get('/reviews/:productId', productReviewController.getReviewsByProductId);
 
 // router.get('/:[bannerId]', userController.userById);

@@ -198,6 +198,58 @@ const productBrands =  async (req,res) => {
     res.json(brands);
 }
 
+const labelWiseProducts = async (req, res) => {
+    try {
+        const { labelSlug } = req.params;
+
+        const products = await prisma.product.findMany({
+            where: {
+                labels: {
+                    some: {
+                        label: {
+                            slug: labelSlug,
+                        },
+                    },
+                },
+                visibility: "published", // optional but recommended
+            },
+            include: {
+                brand: true,
+                images: true,
+                labels: {
+                    include: {
+                        label: true,
+                    },
+                },
+                categories: true,
+                productVariants: true,
+                ratings: true,
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+
+        return res.status(200).json({
+            success: true,
+            count: products.length,
+            data: products,
+        });
+
+    } catch (error) {
+        console.error("Label wise product error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch products by label",
+        });
+    }
+};
+
+module.exports = {
+    labelWiseProducts,
+};
+
+
 module.exports = {
     productCategories,
     featuredProducts,
@@ -208,7 +260,8 @@ module.exports = {
     productBrands,
     productBySlug,
     productDetailBySlug,
-    productByCatId
+    productByCatId,
+    labelWiseProducts
 };
 
 
