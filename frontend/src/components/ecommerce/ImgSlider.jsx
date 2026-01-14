@@ -97,7 +97,7 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h1
-                                className={`text-2xl  font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full lg:ml-60 md:ml-50 ${
+                                className={`text-2xl  font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full lg:ml-40 md:ml-30 ${
                                     index === 0 ? "text-black" : "text-gray-300"
                                 }`}
                             >
