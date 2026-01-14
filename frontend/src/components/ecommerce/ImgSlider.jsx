@@ -113,7 +113,7 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h2
-                                className={`text-base sm:text-lg md:text-xl max-w-md mb-6 ${
+                                className={`text-base sm:text-lg md:text-xl max-w-md mb-6 text-center md:text-left lg:text-left  ${
                                     index === 0  ? "text-black" : "text-gray-300"
                                 }`}
                             >
