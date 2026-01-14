@@ -87,7 +87,7 @@ export default function ImgSlider() {
                     }`}
                 >
 
-                    <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2 sm:ml-32 md:ml-10 lg:ml-50 overflow-hidden">
+                    <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2 xs:ml-20 sm:ml-32 md:ml-30 lg:ml-70 overflow-hidden">
 
                         <div
                             className={`transition-all duration-1000 ease-out delay-200 ${
@@ -96,7 +96,11 @@ export default function ImgSlider() {
                                     : "translate-x-[-50%] opacity-70"
                             }`}
                         >
-                            <h1 className="text-gray-300 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full">
+                            <h1
+                                className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full ${
+                                    index === 0 ? "text-black" : "text-gray-300"
+                                }`}
+                            >
                                 {item.title_text}
                             </h1>
                         </div>
@@ -108,7 +112,7 @@ export default function ImgSlider() {
                                     : "translate-x-[-50%] opacity-70"
                             }`}
                         >
-                            <h2 className="text-base sm:text-lg md:text-xl text-gray-300 max-w-md mb-6">
+                            <h2 className={`text-base sm:text-lg md:text-xl text-gray-300 max-w-md mb-6 ${index === 0 ? "text-black" : "text-gray-300"}`}>
                                 {item.sub_text}
                             </h2>
                         </div>
