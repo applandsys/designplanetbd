@@ -87,75 +87,75 @@ export default function ImgSlider() {
                     }`}
                 >
 
-                    {/*<div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2 lg:ml-40 md:ml-30 border-amber-700  overflow-hidden">*/}
+                    <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2 lg:ml-40 md:ml-30 sm:ml-10   overflow-hidden">
 
-                    {/*    <div*/}
-                    {/*        className={`transition-all duration-1000 ease-out delay-200 ${*/}
-                    {/*            index === current*/}
-                    {/*                ? "translate-x-0 opacity-100"*/}
-                    {/*                : "translate-x-[-50%] opacity-70"*/}
-                    {/*        }`}*/}
-                    {/*    >*/}
-                    {/*        <h1*/}
-                    {/*            className={`text-2xl  font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full  ${*/}
-                    {/*                index === 0 ? "text-black" : "text-gray-300"*/}
-                    {/*            }`}*/}
-                    {/*        >*/}
-                    {/*            {item.title_text}*/}
-                    {/*        </h1>*/}
-                    {/*    </div>*/}
+                        <div
+                            className={`transition-all duration-1000 ease-out delay-200 ${
+                                index === current
+                                    ? "translate-x-0 opacity-100"
+                                    : "translate-x-[-50%] opacity-70"
+                            }`}
+                        >
+                            <h1
+                                className={`text-2xl  font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full  ${
+                                    index === 0 ? "text-black" : "text-gray-300"
+                                }`}
+                            >
+                                {item.title_text}
+                            </h1>
+                        </div>
 
-                    {/*    <div*/}
-                    {/*        className={`transition-all duration-1000 ease-out delay-400 ${*/}
-                    {/*            index === current*/}
-                    {/*                ? "translate-x-0 opacity-100"*/}
-                    {/*                : "translate-x-[-50%] opacity-70"*/}
-                    {/*        }`}*/}
-                    {/*    >*/}
-                    {/*        <h2*/}
-                    {/*            className={`text-base sm:text-lg md:text-xl max-w-md mb-6 text-center md:text-left lg:text-left  ${*/}
-                    {/*                index === 0  ? "text-black" : "text-gray-300"*/}
-                    {/*            }`}*/}
-                    {/*        >*/}
-                    {/*            {item.sub_text}*/}
-                    {/*        </h2>*/}
-                    {/*    </div>*/}
+                        <div
+                            className={`transition-all duration-1000 ease-out delay-400 ${
+                                index === current
+                                    ? "translate-x-0 opacity-100"
+                                    : "translate-x-[-50%] opacity-70"
+                            }`}
+                        >
+                            <h2
+                                className={`text-base sm:text-lg md:text-xl max-w-md mb-6 text-center md:text-left lg:text-left  ${
+                                    index === 0  ? "text-black" : "text-gray-300"
+                                }`}
+                            >
+                                {item.sub_text}
+                            </h2>
+                        </div>
 
-                    {/*    {item.is_button && (*/}
-                    {/*        <div*/}
-                    {/*            className={`transition-all duration-1000 ease-out delay-600 ${*/}
-                    {/*                index === current*/}
-                    {/*                    ? "translate-x-0 opacity-100"*/}
-                    {/*                    : "translate-x-[-50%] opacity-70"*/}
-                    {/*            }`}*/}
-                    {/*        >*/}
-                    {/*            <div className="explore-btn-container group/btn relative inline-block">*/}
-                    {/*                <button*/}
-                    {/*                    className="bg-black text-white rounded-full font-medium px-8 transition-all duration-500 hover:bg-red-600 whitespace-nowrap h-12 flex items-center justify-center relative overflow-hidden"*/}
-                    {/*                >*/}
-                    {/*                    <span className="z-10 relative">Get Now</span>*/}
-                    {/*                    <div*/}
-                    {/*                        className="absolute right-0 top-0 bottom-0 w-0 transition-all duration-500 group-hover/btn:w-10 flex items-center justify-center overflow-hidden"*/}
-                    {/*                    >*/}
-                    {/*                        <svg*/}
-                    {/*                            className="w-5 h-5 transition-all duration-500 opacity-0 group-hover/btn:opacity-100 group-hover/btn:rotate-[-45deg] text-white"*/}
-                    {/*                            fill="none"*/}
-                    {/*                            stroke="currentColor"*/}
-                    {/*                            viewBox="0 0 24 24"*/}
-                    {/*                        >*/}
-                    {/*                            <path*/}
-                    {/*                                strokeLinecap="round"*/}
-                    {/*                                strokeLinejoin="round"*/}
-                    {/*                                strokeWidth={2}*/}
-                    {/*                                d="M14 5l7 7m0 0l-7 7m7-7H3"*/}
-                    {/*                            />*/}
-                    {/*                        </svg>*/}
-                    {/*                    </div>*/}
-                    {/*                </button>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    )}*/}
-                    {/*</div>*/}
+                        {item.is_button && (
+                            <div
+                                className={`transition-all duration-1000 ease-out delay-600 ${
+                                    index === current
+                                        ? "translate-x-0 opacity-100"
+                                        : "translate-x-[-50%] opacity-70"
+                                }`}
+                            >
+                                <div className="explore-btn-container group/btn relative inline-block">
+                                    <button
+                                        className="bg-black text-white rounded-full font-medium px-8 transition-all duration-500 hover:bg-red-600 whitespace-nowrap h-12 flex items-center justify-center relative overflow-hidden"
+                                    >
+                                        <span className="z-10 relative">Get Now</span>
+                                        <div
+                                            className="absolute right-0 top-0 bottom-0 w-0 transition-all duration-500 group-hover/btn:w-10 flex items-center justify-center overflow-hidden"
+                                        >
+                                            <svg
+                                                className="w-5 h-5 transition-all duration-500 opacity-0 group-hover/btn:opacity-100 group-hover/btn:rotate-[-45deg] text-white"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <Image
                         src={`${config.publicPath}/images/banners/${item.image}`}
                         alt={`Slide ${index + 1}`}
