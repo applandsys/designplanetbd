@@ -41,7 +41,7 @@ const PromoCards = () => {
                     alt={banner.title_text}
                     width={500} 
                     height={300} 
-                    className="h-full object-contain mx-auto rounded-xl" // Added rounded-xl here
+                    className="h-full object-contain mx-auto rounded-xl"
                 />
                 <div className="absolute bottom-4 left-10">
                     {
