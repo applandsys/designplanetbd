@@ -6,7 +6,7 @@ import ProductGridCard from "@/components/ecommerce/product/ProducGridCard";
 
 const ProductList = ({headLine}) => {
     const [products, setProducts] = useState([]);
-    const [hotProducts, setHotProducts] = useState({});
+    const [hotProducts, setHotProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -32,7 +32,6 @@ const ProductList = ({headLine}) => {
 
     return (
         <div className="mt-4">
-
             <div className="mt-4">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6 font-kumbh">Featured Products</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ">
