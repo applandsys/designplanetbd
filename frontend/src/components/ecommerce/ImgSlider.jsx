@@ -87,7 +87,7 @@ export default function ImgSlider() {
                     }`}
                 >
 
-                    <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2  overflow-hidden">
+                    <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2 lg:ml-40 md:ml-30 border-amber-700  overflow-hidden">
 
                         <div
                             className={`transition-all duration-1000 ease-out delay-200 ${
@@ -97,7 +97,7 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h1
-                                className={`text-2xl  font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full lg:ml-40 md:ml-30 ${
+                                className={`text-2xl  font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full  ${
                                     index === 0 ? "text-black" : "text-gray-300"
                                 }`}
                             >
