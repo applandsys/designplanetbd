@@ -87,7 +87,7 @@ export default function ImgSlider() {
                     }`}
                 >
 
-                    <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2 lg:ml-70 md:ml-60 sm:ml-20   overflow-hidden">
+                    <div className="absolute w-full md:w-[calc(100%+80px)] h-full flex flex-col justify-center text-left z-20 p-2 lg:ml-60 md:ml-50 sm:ml-20   overflow-hidden">
 
                         <div
                             className={`transition-all duration-1000 ease-out delay-200 ${

@@ -90,17 +90,17 @@ const ProductGridCard = ({ product }) => {
                 {/* Badges */}
                 <div className="absolute top-1 left-1 z-10 flex flex-col gap-1">
                     {isHot && (
-                        <span className="bg-red-500 text-white px-1 py-0.5 rounded text-[8px] font-bold uppercase">
+                        <span className="bg-red-500 text-white px-1 py-0.5 rounded text-sm font-bold uppercase">
               HOT
             </span>
                     )}
                     {isNew && (
-                        <span className="bg-blue-500 text-white px-1 py-0.5 rounded text-[8px] font-bold uppercase">
+                        <span className="bg-blue-500 text-white px-1 py-0.5 rounded text-sm font-bold uppercase">
               NEW
             </span>
                     )}
                     {discount > 0 && (
-                        <span className="bg-orange-500 text-white px-1 py-0.5 rounded text-[8px] font-bold">
+                        <span className="bg-orange-500 text-white px-1 py-0.5 rounded text-sm font-bold">
               -{discount}%
             </span>
                     )}
