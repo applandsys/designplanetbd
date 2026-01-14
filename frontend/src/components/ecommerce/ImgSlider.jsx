@@ -114,7 +114,7 @@ export default function ImgSlider() {
                         >
                             <h2
                                 className={`text-base sm:text-lg md:text-xl max-w-md mb-6 ${
-                                    index === 0 && index === current ? "text-black" : "text-gray-600"
+                                    index === 0  ? "text-black" : "text-gray-300"
                                 }`}
                             >
                                 {item.sub_text}
