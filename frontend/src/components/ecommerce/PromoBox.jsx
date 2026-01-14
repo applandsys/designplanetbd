@@ -33,7 +33,7 @@ const PromoCards = () => {
                 className={`flex flex-col bg-[${banner.backgroundColor}]`}
             >
                 <div className="absolute">
-                    <h3 className="text-xl font-semibold   mb-4  font-quicksand  mt-8 ml-8 text-white">{banner.title_text}</h3>
+                    <h3 className="text-xl font-semibold   mb-4  font-quicksand  mt-8 ml-20 text-white">{banner.title_text}</h3>
                 </div>
 
                 <Image
