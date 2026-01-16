@@ -148,7 +148,7 @@ export default function CheckoutPage() {
                                         {
                                             !customer ? (
                                                 <div className="flex">
-                                                    <UserIcon className="text-gray-600"/>
+                                                    <UserIcon className="w-6 h-6 text-gray-600" />
                                                     <span className="px-2">Already have an account?</span>
                                                     <a href="#" className="text-red-600"
                                                        onClick={() => setLoginOpen(!loginOpen)}> Click here to login</a>
