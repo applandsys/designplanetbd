@@ -8,7 +8,7 @@ export default function Footer() {
     const pathname = usePathname();
     const hasWord = pathname.includes('admin');
 
-    const [siteSetting, setSiteSetting] = useState('logo.png');
+    const [siteSetting, setSiteSetting] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Footer() {
                     <hr />
                     <div className="container flex flex-col md:flex-row justify-between bottom-footer mt-4">
                         <div className="py-4 text-center md:text-left">
-                            <div className="text-xs">© 2024 OmninestGlobal. All rights reserved </div>
+                            <div className="text-xs">© 2024 DesignPlanet. All rights reserved </div>
                         </div>
                     </div>
                 </footer>
@@ -124,7 +124,7 @@ export default function Footer() {
                             <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
                                 {/* Copyright - Left aligned */}
                                 <div className="text-[#333333] text-sm w-full lg:w-auto text-center lg:text-left order-2 lg:order-1">
-                                    © 2024 Modave. All rights reserved.
+                                    © 2024 {siteSetting.site_name}. All rights reserved.
                                 </div>
 
                                 {/* Payment Methods and Scroll to Top Button grouped together */}

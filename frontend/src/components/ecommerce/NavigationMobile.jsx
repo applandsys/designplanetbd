@@ -15,6 +15,9 @@ export default function NavbarLeft() {
 
   const [siteLogo, setSiteLogo] = useState('logo.png');
 
+  const [siteSetting, setSiteSetting] = useState([]);
+
+
   useEffect(() => {
     fetchSettingData().then((json) => {
       if (json.success) {
@@ -22,6 +25,14 @@ export default function NavbarLeft() {
       }
     }).catch(error => setError(error)
     ).finally(setLoading(false));
+
+    fetchSettingData().then((json) => {
+      if (json.success) {
+        setSiteSetting(json.data);
+      }
+    }).catch(error => setError(error)
+    ).finally(setLoading(false));
+
   }, []);
 
   if (loading) return <div className="p-4">Fetching Data ...</div>;
@@ -88,7 +99,7 @@ export default function NavbarLeft() {
             <div>Our location</div>
             <div>Sign Up</div>
             <div>Log In</div>
-            <div>(+01) - 2345 - 6789</div>
+            <div>{siteSetting.phone}</div>
           </div>
 
           <div className="mt-6">
@@ -144,7 +155,7 @@ export default function NavbarLeft() {
               {/* Right Side: Call Us */}
               <div className="text-xs md:text-sm text-right">
                   Need help? Call Us:{" "}
-                  <span className="text-orange-600 font-bold">+ 01585 239605</span>
+                  <span className="text-orange-600 font-bold">{siteSetting.phone}</span>
               </div>
           </div>
 
