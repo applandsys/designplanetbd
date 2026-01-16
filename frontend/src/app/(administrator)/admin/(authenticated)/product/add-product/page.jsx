@@ -1,3 +1,5 @@
+"use client";
+
 import ProductAddEditForm from "@/components/admin/ecommerce/ProductAddEditForm";
 
 const AddProduct = () => {
