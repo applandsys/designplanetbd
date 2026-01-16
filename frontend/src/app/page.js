@@ -24,7 +24,6 @@ export default function Home() {
                         <CategoryCarousel/>
                     </div>
                 </div>
-
                 <div className="mx-2">
                     <SpecialOffer/>
                 </div>

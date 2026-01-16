@@ -32,6 +32,7 @@ const ProductDetailCard = ({ product }) => {
     const images = safeProduct?.images ?? [];
     const labels = safeProduct?.labels ?? [];
     const ratings = safeProduct?.ratings ?? []; // optional (may not exist)
+    const discountPrice = Number(safeProduct?.discountPrice ?? 0);
     const discount = Number(safeProduct?.discount ?? 0);
     const sellPrice = Number(safeProduct?.sellPrice ?? 0);
     const oldPrice = Number(safeProduct?.price ?? safeProduct?.sellPrice ?? 0); // fallback
@@ -281,7 +282,7 @@ const ProductDetailCard = ({ product }) => {
 
                     <div className="mt-4 flex items-center gap-4">
             <span className="text-4xl text-green-600 font-bold">
-              ৳ {sellPrice}
+              ৳ {discountPrice}
             </span>
 
                         {discount > 0 && (
