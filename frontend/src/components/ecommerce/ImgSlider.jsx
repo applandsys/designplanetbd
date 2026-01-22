@@ -97,7 +97,7 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h1
-                                className="text-md md:text-4xl lg:text-6xl font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full text-black"
+                                className="text-[1.3rem]  lg:text-6xl font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full text-black"
                             >
                                 {item.title_text}
                             </h1>
