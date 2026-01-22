@@ -9,7 +9,7 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
     const [submitting, setSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
-        title: "",
+        title_text: "",
         sub_title: "",
         slug: "",
         background_color: "",
@@ -28,7 +28,7 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
                     if (data.success) {
                         setFormData({
                             name: data.data.name,
-                            title: data.data.title_text,
+                            title_text: data.data.title_text,
                             sub_title: data.data.sub_text,
                             slug: data.data.slug,
                             background_color: data.data.backgroundColor,
@@ -58,7 +58,7 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
 
         const data = new FormData();
         data.append("name", formData.name);
-        data.append("title", formData.title);
+        data.append("title", formData.title_text);
         data.append("sub_title", formData.sub_title);
         data.append("slug", formData.slug);
         data.append("background_color", formData.background_color);
@@ -115,7 +115,7 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
                     <input
                         type="text"
                         name="title"
-                        value={formData.title}
+                        value={formData.title_text}
                         onChange={handleChange}
                         className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
                     />
