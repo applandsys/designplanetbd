@@ -97,9 +97,7 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h1
-                                className={`text-2xl md:text-4xl lg:text-6xl font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full  ${
-                                    index === 0 ? "text-black" : "text-gray-300"
-                                }`}
+                                className="text-xl md:text-4xl lg:text-6xl font-bold drop-shadow-lg mb-2 text-center md:text-left lg:text-left w-full text-black"
                             >
                                 {item.title_text}
                             </h1>
@@ -113,9 +111,7 @@ export default function ImgSlider() {
                             }`}
                         >
                             <h2
-                                className={`text-base sm:text-lg md:text-xl max-w-md mb-6 text-center md:text-left lg:text-left   ${
-                                    index === 0  ? "text-black" : "text-gray-300"
-                                }`}
+                                className="ext-base text-md sm:text-xl md:text-xl max-w-md mb-6 text-center md:text-left lg:text-left  text-black"
                             >
                                 {item.sub_text}
                             </h2>
