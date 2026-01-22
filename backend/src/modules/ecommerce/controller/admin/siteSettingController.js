@@ -140,41 +140,61 @@ const handler = async (req, res) => {
             }
 
         case 'PUT':
-            // Handle PUT method for updating an existing banner
             try {
-                const { name, title_text, sub_title, slug, background_color, height, width, position, url, url_text } = req.body;
+                const {
+                    name,
+                    title_text,
+                    sub_title,
+                    slug,
+                    background_color,
+                    height,
+                    width,
+                    position,
+                    url,
+                    url_text
+                } = req.body;
+
                 const existingBanner = await prisma.banner.findUnique({
                     where: { id: parseInt(id) },
                 });
 
-                let imageName = null;
+                if (!existingBanner) {
+                    return res.status(404).json({
+                        success: false,
+                        message: 'Banner not found',
+                    });
+                }
+
+                // ✅ Keep existing image by default
+                let imageName = existingBanner.image;
+
+                // ✅ If new image uploaded → replace
                 if (req.files?.banner?.length > 0) {
                     imageName = req.files.banner[0].filename;
-                }
 
-                if (!existingBanner) {
-                    return res.status(404).json({ success: false, message: 'Banner not found' });
-                }
+                    // OPTIONAL: delete old image
+                    if (existingBanner.image) {
+                        const oldImagePath = path.join(
+                            process.cwd(),
+                            'public/images/banners',
+                            existingBanner.image
+                        );
 
-              //  let imageName = existingBanner.image;
-                // if (req.files?.banner?.length > 0) {
-                //     imageName = req.files.banner[0].filename;
-                //     // Optionally delete old image if replaced
-                //     const oldImagePath = path.join(process.cwd(), 'public/images/banners', existingBanner.image);
-                //     if (fs.existsSync(oldImagePath)) {
-                //         fs.unlinkSync(oldImagePath); // Delete the old image
-                //     }
-                // }
+                        if (fs.existsSync(oldImagePath)) {
+                            fs.unlinkSync(oldImagePath);
+                        }
+                    }
+                }
 
                 const updatedBanner = await prisma.banner.update({
                     where: { id: parseInt(id) },
                     data: {
                         name,
-                        title_text,  // Corrected to title_text
-                        sub_text: sub_title,  // Corrected to sub_text
+                        title_text,
+                        sub_text: sub_title,
                         slug,
-                        backgroundColor: background_color,  // Corrected to backgroundColor
-                        image: imageName,  // Image filename from uploaded file
+                        backgroundColor: background_color,
+                        image: imageName, // ✅ always valid
                         height,
                         width,
                         position,
@@ -183,11 +203,18 @@ const handler = async (req, res) => {
                     },
                 });
 
-                return res.status(200).json({ success: true, data: updatedBanner });
+                return res.status(200).json({
+                    success: true,
+                    data: updatedBanner,
+                });
             } catch (err) {
                 console.error(err);
-                return res.status(500).json({ success: false, error: err.message });
+                return res.status(500).json({
+                    success: false,
+                    error: err.message,
+                });
             }
+
 
         case 'DELETE':
             // Handle DELETE method for deleting a banner
