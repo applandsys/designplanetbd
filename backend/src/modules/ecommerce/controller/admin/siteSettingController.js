@@ -97,7 +97,7 @@ const handler = async (req, res) => {
             try {
                 const {
                     name,
-                    title,  // title should be title_text in Prisma model
+                    title_text,  // title should be title_text in Prisma model
                     sub_title,  // sub_title should be mapped to sub_text
                     slug,
                     background_color,  // background_color should be backgroundColor in Prisma model
@@ -118,7 +118,7 @@ const handler = async (req, res) => {
                 const newBanner = await prisma.banner.create({
                     data: {
                         name,
-                        title_text: title,        // Corrected field name (title_text)
+                        title_text: title_text,        // Corrected field name (title_text)
                         sub_text: sub_title,  // Corrected to match Prisma model (sub_text)
                         slug,
                         backgroundColor: background_color,  // Corrected to match Prisma model (backgroundColor)
@@ -173,17 +173,17 @@ const handler = async (req, res) => {
                     imageName = req.files.banner[0].filename;
 
                     // OPTIONAL: delete old image
-                    if (existingBanner.image) {
-                        const oldImagePath = path.join(
-                            process.cwd(),
-                            'public/images/banners',
-                            existingBanner.image
-                        );
-
-                        if (fs.existsSync(oldImagePath)) {
-                            fs.unlinkSync(oldImagePath);
-                        }
-                    }
+                    // if (existingBanner.image) {
+                    //     const oldImagePath = path.join(
+                    //         process.cwd(),
+                    //         'public/images/banners',
+                    //         existingBanner.image
+                    //     );
+                    //
+                    //     if (fs.existsSync(oldImagePath)) {
+                    //         fs.unlinkSync(oldImagePath);
+                    //     }
+                    // }
                 }
 
                 const updatedBanner = await prisma.banner.update({

@@ -15,7 +15,7 @@ const BannerSetting = () => {
     }
 
     useEffect(() => {
-        getBanners();
+        fetchBanner().then(res=>{setBanners(res.data)});
     }, []);
 
 

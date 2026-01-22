@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import config from "@/config"; // You may need this to get the ID from the URL
 import { useRouter } from 'next/navigation';
 
 const BannerUploadForm = ({ bannerId, getBanners }) => {
 
+    const [bannerData, setBannerData] = useState({});
+
     const [submitting, setSubmitting] = useState(false);
+    const fileInputRef = useRef(null);
+    const [successMessage, setSuccessMessage] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         title_text: "",
@@ -33,6 +37,9 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
                             slug: data.data.slug,
                             background_color: data.data.backgroundColor,
                         });
+
+                        setBannerData( data.data);
+
                         setBannerPreview(`${config.publicPath}/images/banners/${data.data.image}`);
                     }
                 });
@@ -58,7 +65,7 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
 
         const data = new FormData();
         data.append("name", formData.name);
-        data.append("title", formData.title_text);
+        data.append("title_text", formData.title_text);
         data.append("sub_title", formData.sub_title);
         data.append("slug", formData.slug);
         data.append("background_color", formData.background_color);
@@ -80,18 +87,48 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
         });
 
         if (response.ok) {
-            getBanners();
-            router.push("/admin/banner-setting"); // Redirect to the banner list page after submission
+            !bannerId &&  getBanners();
+
+            // Reset form
+            setFormData({
+                name: "",
+                title_text: "",
+                sub_title: "",
+                slug: "",
+                background_color: "",
+                banner: null,
+            });
+
+            setBannerPreview(null);
+            setSuccessMessage("Banner saved successfully!");
+
+            // Reset file input
+            if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+            }
+
+            // Optional redirect after 1.5s
+            setTimeout(() => {
+                router.push("/admin/banner-setting");
+            }, 1500);
         } else {
             const result = await response.json();
             console.error(result.error || 'An error occurred');
         }
+
 
         setSubmitting(false);
     };
 
     return (
         <div>
+
+            {successMessage && (
+                <div className="mb-4 rounded-lg bg-green-100 border border-green-400 text-green-700 px-4 py-3">
+                    {successMessage}
+                </div>
+            )}
+
             <form onSubmit={handleSubmit} className="mx-auto p-2 space-y-2">
                 <div className="mt-2">
                     <label className="block text-sm text-gray-700 mb-1 text-center font-bold">
@@ -114,7 +151,7 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
                     <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
                     <input
                         type="text"
-                        name="title"
+                        name="title_text"
                         value={formData.title_text}
                         onChange={handleChange}
                         className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
@@ -165,12 +202,14 @@ const BannerUploadForm = ({ bannerId, getBanners }) => {
                         />
                     )}
                     <input
+                        ref={fileInputRef}
                         type="file"
                         name="banner"
                         accept="image/*"
                         onChange={handleChange}
                         className="block w-full text-sm text-gray-500"
                     />
+
                 </div>
 
                 {/* Submit Button */}
