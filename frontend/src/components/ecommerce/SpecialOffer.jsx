@@ -28,37 +28,38 @@ const SpecialOffer = () => {
             <div className="mx-auto max-w-7xl px-4">
                 <div className="relative">
                     <div className="flex flex-col gap-4 lg:flex-row lg:gap-6">
+					
                         <div className="lg:w-1/2">
-                            <div className="relative h-56 w-full overflow-hidden rounded-lg group sm:h-72 md:h-96">
-                                {banners?.[0]?.image && (
-                                    <Image
-                                        src={`${config.publicPath}/images/banners/${banners?.[0]?.image ?? ''}`}
-                                        alt="Promotional Banner"
-                                        fill
-                                        className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                                        sizes="(max-width: 1024px) 100vw, 50vw"
-                                        priority
-                                    />
-                                    )
-                                }
-                            </div>
-                        </div>
+						  <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-lg group">
+							{banners?.[0]?.image && (
+							  <Image
+								src={`${config.publicPath}/images/banners/${banners[0].image}`}
+								alt="Promotional Banner"
+								fill
+								className="object-cover transition-transform duration-500 group-hover:scale-105"
+								sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
+								priority
+							  />
+							)}
+						  </div>
+						</div>
 
-                        <div className="lg:w-1/2">
-                            <div className="relative h-56 w-full overflow-hidden rounded-lg group sm:h-72 md:h-96">
-                                {banners?.[0]?.image && (
-                                    <Image
-                                        src={`${config.publicPath}/images/banners/${banners?.[1]?.image ?? ''}`}
-                                        alt="Promotional Banner"
-                                        fill
-                                        className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                                        sizes="(max-width: 1024px) 100vw, 50vw"
-                                        priority
-                                    />
-                                )
-                                }
-                            </div>
-                        </div>
+
+						<div className="lg:w-1/2">
+							<div className="relative w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-lg group">
+							{banners?.[0]?.image && (
+								  <Image
+									src={`${config.publicPath}/images/banners/${banners[0].image}`}
+									alt="Promotional Banner"
+									fill
+									className="object-cover transition-transform duration-500 group-hover:scale-105"
+									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
+									priority
+								  />
+								)}
+							</div>
+						</div>
+
                     </div>
 
                     <div className="mt-4 flex w-full justify-center md:mt-0 md:absolute md:left-1/2 md:top-1/2 md:z-10 md:-translate-x-1/2 md:-translate-y-1/2">
