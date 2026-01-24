@@ -213,7 +213,7 @@ const ProductDetailCard = ({ product }) => {
                                     src={mainImageSrc}
                                     alt={safeProduct.name ?? "Product image"}
                                     fill
-                                    className="rounded-xl"
+                                    className="rounded-xl p-1"
                                     style={{ objectFit: "cover", objectPosition: "center center" }}
                                     priority
                                     draggable={false}
@@ -231,7 +231,7 @@ const ProductDetailCard = ({ product }) => {
 
                     {/* Thumbnails */}
                     {images.length > 0 && (
-                        <div className="flex gap-2 overflow-x-auto py-2">
+                        <div className="flex gap-2 overflow-x-auto p-2">
                             {images.map((img, index) => {
                                 const thumbSrc = `${config.publicPath}/images/products/${img.name}`;
                                 return (
@@ -276,14 +276,14 @@ const ProductDetailCard = ({ product }) => {
                             {"★".repeat(5)}
                         </div>
                         <span className="text-gray-500 text-sm ml-2">
-              ({ratings.length} reviews)
-            </span>
+                          ({ratings.length} reviews)
+                        </span>
                     </div>
 
                     <div className="mt-4 flex items-center gap-4">
-            <span className="text-4xl text-green-600 font-bold">
-              ৳ {discountPrice}
-            </span>
+                        <span className="text-4xl text-green-600 font-bold">
+                          ৳ {discountPrice}
+                        </span>
 
                         {discount > 0 && (
                             <>
@@ -291,8 +291,8 @@ const ProductDetailCard = ({ product }) => {
                                     {discount}% Off
                                 </div>
                                 <span className="line-through text-gray-400 text-lg">
-                  ৳ {oldPrice}
-                </span>
+                        ৳ {oldPrice}
+                     </span>
                             </>
                         )}
                     </div>
@@ -460,7 +460,7 @@ const ProductDetailCard = ({ product }) => {
                                             height={64}
                                             src={thumbSrc}
                                             alt={`Thumbnail ${index + 1}`}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover p-1"
                                         />
                                     </button>
                                 );
@@ -470,9 +470,9 @@ const ProductDetailCard = ({ product }) => {
                 </div>
 
                 <div className="space-y-6">
-          <span className="bg-pink-100 text-pink-600 text-sm font-semibold px-3 py-1 rounded">
-            {labels?.length ? labels[0]?.label?.name ?? "" : ""}
-          </span>
+                  <span className="bg-pink-100 text-pink-600 text-sm font-semibold px-3 py-1 rounded">
+                    {labels?.length ? labels[0]?.label?.name ?? "" : ""}
+                  </span>
 
                     <h1 className="text-4xl font-bold text-gray-900 leading-tight">
                         {safeProduct.name}
@@ -483,22 +483,22 @@ const ProductDetailCard = ({ product }) => {
                             {"★".repeat(5)}
                         </div>
                         <span className="text-gray-500 text-sm ml-3">
-              ({ratings.length} reviews)
-            </span>
+                          ({ratings.length} reviews)
+                        </span>
                     </div>
 
                     <div className="flex items-center gap-4">
-            <span className="text-5xl text-green-600 font-bold">
-              ৳ {sellPrice}
-            </span>
+                        <span className="text-5xl text-green-600 font-bold">
+                          ৳ {sellPrice}
+                        </span>
                         {discount > 0 && (
                             <>
                                 <div className="text-base text-red-400 font-semibold">
                                     {discount}% Off
                                 </div>
                                 <span className="line-through text-gray-400 text-xl">
-                  ৳ {oldPrice}
-                </span>
+                                  ৳ {oldPrice}
+                                </span>
                             </>
                         )}
                     </div>

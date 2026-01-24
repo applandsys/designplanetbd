@@ -77,9 +77,9 @@ const SpecialOffer = () => {
                                     Reserved for special occasions
                                 </p>
 
-                                <button className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-red-600 transition-colors font-medium w-full text-sm">
+                                <a href="/category/work-station" className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-red-600 transition-colors font-medium w-full text-sm">
                                     Explore Collection
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
