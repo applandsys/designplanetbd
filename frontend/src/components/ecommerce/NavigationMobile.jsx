@@ -56,7 +56,7 @@ export default function NavbarLeft() {
         >
 
           <div className="flex items-center justify-between mb-4">
-            <div className="relative h-10 sm:h-14 md:h-16 w-auto">
+            <div className="relative  w-auto">
               <Image
                 src={`${config.publicPath}/${siteLogo}`}
                 alt="logo"
