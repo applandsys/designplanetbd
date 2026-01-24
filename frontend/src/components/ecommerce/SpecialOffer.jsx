@@ -34,11 +34,11 @@ const SpecialOffer = () => {
 							{banners?.[0]?.image && (
 							  <Image
 								src={`${config.publicPath}/images/banners/${banners[0].image}`}
-								alt="Promotional Banner"
-								fill
-								className="object-cover transition-transform duration-500 group-hover:scale-105"
-								sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
-								priority
+                                alt="Banner"
+                                fill
+                                className="object-contain md:object-cover"
+                                sizes="(max-width: 768px) 100vw, 100vw"
+                                priority
 							  />
 							)}
 						  </div>
@@ -50,11 +50,11 @@ const SpecialOffer = () => {
 							{banners?.[1]?.image && (
 								  <Image
 									src={`${config.publicPath}/images/banners/${banners[1].image}`}
-									alt="Promotional Banner"
-									fill
-									className="object-cover transition-transform duration-500 group-hover:scale-105"
-									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
-									priority
+                                    alt="Banner"
+                                    fill
+                                    className="object-contain md:object-cover"
+                                    sizes="(max-width: 768px) 100vw, 100vw"
+                                    priority
 								  />
 								)}
 							</div>
