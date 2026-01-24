@@ -7,6 +7,7 @@ import { FiMenu } from 'react-icons/fi';
 import Image from 'next/image';
 import {fetchSettingData} from "@/services/site/SettingData";
 import config from "@/config";
+import Link from "next/link";
 
 export default function NavbarLeft() {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,11 +89,8 @@ export default function NavbarLeft() {
 
           <ul className="space-y-2 text-sm">
             <li className="border-b py-2 cursor-pointer">Home</li>
-            <li className="border-b py-2 cursor-pointer">Shop</li>
-            <li className="border-b py-2 cursor-pointer">Mega Menu</li>
-            <li className="border-b py-2 cursor-pointer">Blog</li>
-            <li className="border-b py-2 cursor-pointer">Pages</li>
-            <li className="border-b py-2 cursor-pointer">Language</li>
+            <li className="border-b py-2 cursor-pointer">About</li>
+            <li className="border-b py-2 cursor-pointer">Contact</li>
           </ul>
 
           <div className="mt-6 border-t pt-4 text-sm text-gray-700 space-y-2">
@@ -125,8 +123,14 @@ export default function NavbarLeft() {
               {/* Left Side: Menu Links / Mobile Toggle */}
               <div className="flex justify-between ">
                   <ul className="hidden md:flex space-x-6 text-xs">
-                      <li><a href="#" className="hover:text-blue-500">About</a></li>
-                      <li><a href="#" className="hover:text-blue-500">My Account</a></li>
+                    <li>
+                       <Link href="/about"
+                          className="text-gray-600 hover:text-blue-600 font-medium">About</Link>
+                      </li>
+                      <li>
+                       <Link href="/contact"
+                          className="text-gray-600 hover:text-blue-600 font-medium">Contact</Link>
+                        </li>
                       <li><a href="#" className="hover:text-blue-500">Wishlist</a></li>
                       <li><a href="#" className="hover:text-blue-500">Order Tracking</a></li>
                   </ul>
