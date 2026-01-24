@@ -28,38 +28,37 @@ const SpecialOffer = () => {
             <div className="mx-auto max-w-7xl px-4">
                 <div className="relative">
                     <div className="flex flex-col gap-4 lg:flex-row lg:gap-6">
-					
                         <div className="lg:w-1/2">
-						  <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-lg group">
-							{banners?.[0]?.image && (
-							  <Image
-								src={`${config.publicPath}/images/banners/${banners[0].image}`}
-                                alt="Banner"
-                                fill
-                                className="object-contain md:object-cover"
-                                sizes="(max-width: 768px) 100vw, 100vw"
-                                priority
-							  />
-							)}
-						  </div>
-						</div>
+                            <div className="relative h-56 w-full overflow-hidden rounded-lg group sm:h-72 md:h-96">
+                                {banners?.[0]?.image && (
+                                    <Image
+                                        src={`${config.publicPath}/images/banners/${banners?.[0]?.image ?? ''}`}
+                                        alt="Promotional Banner"
+                                        fill
+                                        className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
+                                        priority
+                                    />
+                                )
+                                }
+                            </div>
+                        </div>
 
-
-						<div className="lg:w-1/2">
-							<div className="relative w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-lg group">
-							{banners?.[1]?.image && (
-								  <Image
-									src={`${config.publicPath}/images/banners/${banners[1].image}`}
-                                    alt="Banner"
-                                    fill
-                                    className="object-contain md:object-cover"
-                                    sizes="(max-width: 768px) 100vw, 100vw"
-                                    priority
-								  />
-								)}
-							</div>
-						</div>
-
+                        <div className="lg:w-1/2">
+                            <div className="relative h-56 w-full overflow-hidden rounded-lg group sm:h-72 md:h-96">
+                                {banners?.[0]?.image && (
+                                    <Image
+                                        src={`${config.publicPath}/images/banners/${banners?.[1]?.image ?? ''}`}
+                                        alt="Promotional Banner"
+                                        fill
+                                        className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
+                                        priority
+                                    />
+                                )
+                                }
+                            </div>
+                        </div>
                     </div>
 
                     <div className="mt-4 flex w-full justify-center md:mt-0 md:absolute md:left-1/2 md:top-1/2 md:z-10 md:-translate-x-1/2 md:-translate-y-1/2">
@@ -77,9 +76,9 @@ const SpecialOffer = () => {
                                     Reserved for special occasions
                                 </p>
 
-                                <a href="/category/work-station" className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-red-600 transition-colors font-medium w-full text-sm">
+                                <button className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-red-600 transition-colors font-medium w-full text-sm">
                                     Explore Collection
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
