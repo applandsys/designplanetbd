@@ -56,13 +56,13 @@ export default function NavbarLeft() {
         >
 
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
+            <div className="relative h-10 sm:h-14 md:h-16 w-auto">
               <Image
-                src={`${config.publicPath}/${siteLogo}`}
-                width={100}
-                height={100}
-                alt="logo"
-                className="h-20 w-20"
+                  src={`${config.publicPath}/${siteLogo}`}
+                  alt="logo"
+                  fill
+                  priority
+                  className="object-contain"
               />
             </div>
             <button
