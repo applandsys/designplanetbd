@@ -182,7 +182,7 @@ const ProductDetailCard = ({ product }) => {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-4">
             {/* Mobile */}
             <div className="block lg:hidden">
-                <div className="p-4 border-b border-gray-100">
+                <div className="border-b border-gray-100">
                     <div
                         ref={containerRef}
                         className="relative w-full max-w-sm mx-auto bg-white rounded-xl overflow-hidden mb-3 select-none"
