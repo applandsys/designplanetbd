@@ -58,11 +58,11 @@ export default function NavbarLeft() {
           <div className="flex items-center justify-between mb-4">
             <div className="relative h-10 sm:h-14 md:h-16 w-auto">
               <Image
-                  src={`${config.publicPath}/${siteLogo}`}
-                  alt="logo"
-                  fill
-                  priority
-                  className="object-contain"
+                src={`${config.publicPath}/${siteLogo}`}
+                alt="logo"
+                fill
+                priority
+                className="object-contain"
               />
             </div>
             <button
