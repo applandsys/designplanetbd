@@ -197,7 +197,7 @@ export default function ImgSlider() {
                 </svg>
             </button>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3 z-30">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center gap-3 z-30">
                 {banners && banners.map((_, index) => (
                     <button
                         key={index}
@@ -207,10 +207,13 @@ export default function ImgSlider() {
                         }`}
                     >
                         <div className="absolute inset-0 rounded-full border border-black transition-all duration-300"></div>
-                        {index === current && <div className="w-1.5 h-1.5 bg-black rounded-full"></div>}
+                        {index === current && (
+                            <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
+                        )}
                     </button>
                 ))}
             </div>
+
         </div>
     );
 }
