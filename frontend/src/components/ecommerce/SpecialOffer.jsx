@@ -47,9 +47,9 @@ const SpecialOffer = () => {
 
 						<div className="lg:w-1/2">
 							<div className="relative w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-lg group">
-							{banners?.[0]?.image && (
+							{banners?.[1]?.image && (
 								  <Image
-									src={`${config.publicPath}/images/banners/${banners[0].image}`}
+									src={`${config.publicPath}/images/banners/${banners[1].image}`}
 									alt="Promotional Banner"
 									fill
 									className="object-cover transition-transform duration-500 group-hover:scale-105"
