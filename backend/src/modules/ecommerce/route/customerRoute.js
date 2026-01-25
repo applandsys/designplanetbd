@@ -12,6 +12,8 @@ router.post('/order-submit',authenticateToken, customerOrderController.customerO
 router.post('/add-wishlist',authenticateToken, customerWishListController.addWishList);
 router.post('/review',authenticateToken, customerReviewController.customerReviewSubmit);
 
+router.get('/orderbyid/:id',authenticateToken, customerOrderController.customerOrderById);
+
 // api/customer/support
 router.post('/support',authenticateToken, customerSupportController.addSupportTicket);
 router.get('/support', authenticateToken, customerSupportController.getSupportTicket);

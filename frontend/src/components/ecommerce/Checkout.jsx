@@ -122,9 +122,10 @@ export default function CheckoutPage() {
             );
 
             if (response.status === 201) {
-                dispatch(clearCart());
                 alert("Order placed successfully!");
-                router.push('/order/success'); // or wherever
+                dispatch(clearCart());
+                console.log(response.data)
+                router.push(`/order/success?orderId=${response.data.id}`);
             } else {
                 alert("Failed to place order.");
             }

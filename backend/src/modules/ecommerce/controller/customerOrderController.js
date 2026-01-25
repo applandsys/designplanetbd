@@ -108,6 +108,43 @@ const customerOrderSubmit = async (req, res) => {
 };
 
 
+const customerOrderById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const customerId = req.user.id; // from auth middleware
+
+        const order = await prisma.order.findFirst({
+            where: {
+                id: parseInt(id),
+                customerId: customerId, // 🔐 ownership check
+            },
+            include: {
+                orderItems: {
+                    include: {
+                        product : true
+                    }
+                }, // optional
+            },
+        });
+
+        if (!order) {
+            return res.status(404).json({ message: "Order not found" });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: order,
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+
+
 module.exports = {
-    customerOrderSubmit
+    customerOrderSubmit,
+    customerOrderById
 };
