@@ -70,13 +70,14 @@ const CartNav = () => {
         <nav className="flex flex-col lg:flex-row items-center justify-between lg:py-3">
             <div className="flex-shrink-0">
                 <Link href="/" className="flex items-center space-x-2">
+
                     <Image
                         src={`${config.publicPath}/${siteLogo}`}
                         width={400}
                         height={400}
                         alt="Logo"
                         loading="lazy"
-                        sizes="(max-width: 1024px) 100px, 150px"
+                        className="h-6 w-auto lg:h-6 xl:h-12 transition-all duration-200"
                     />
                 </Link>
             </div>
