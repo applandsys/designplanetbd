@@ -184,7 +184,7 @@ export default function CheckoutPage() {
                         </div>
 
 
-                        <div className="loginFormToggleBox w-1/2">
+                        <div className="loginFormToggleBox w-full lg:w-1/2">
                             {loginOpen && (
                                 <Login/>
                             )}

@@ -67,7 +67,7 @@ export default function NavbarLeft() {
               />
             </div>
             <button
-              className="absolute top-2 right-3 text-white text-2xl border border-gray-300 bg-green-400 rounded-full hover:bg-green-200"
+              className="absolute top-2 right-3 text-white text-2xl border border-gray-300 bg-[#5454a0] rounded-full hover:bg-[#8383ba]"
               onClick={() => setIsOpen(false)}
             >
               <IoClose />
@@ -82,7 +82,7 @@ export default function NavbarLeft() {
             />
           </div>
 
-          <div className="mb-2 font-semibold text-sm text-green-600 flex items-center gap-2 cursor-pointer">
+          <div className="mb-2 font-semibold text-sm text-[#5454a0] flex items-center gap-2 cursor-pointer">
             <FiMenu className="w-4 h-4" />
             Browse Categories
           </div>
