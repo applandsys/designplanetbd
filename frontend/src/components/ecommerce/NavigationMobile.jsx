@@ -59,24 +59,24 @@ export default function NavbarLeft() {
 
 
         <div
-          className={`fixed top-0 left-0 h-full w-[350px] bg-white shadow-lg border border-green-100 p-4 z-50 transform transition-transform duration-300 ease-in-out ${
-            isOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
-        >
+            className={`fixed top-0 left-0 h-full w-[350px] bg-white shadow-lg border border-green-100 z-50 
+          transform transition-transform duration-300 ease-in-out 
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          flex flex-col`}
+                >
 
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Image
+          <div className="flex items-center justify-between p-4 border-b">
+            <Image
                 src={`${config.publicPath}/${siteLogo}`}
                 width={100}
                 height={100}
                 alt="logo"
                 className="w-auto"
-              />
-            </div>
+            />
+
             <button
-              className="absolute top-2 right-3 text-white text-2xl border border-gray-300 bg-[#5454a0] rounded-full hover:bg-[#8383ba]"
-              onClick={() => setIsOpen(false)}
+                className="text-white text-2xl border border-gray-300 bg-[#5454a0] rounded-full hover:bg-[#8383ba]"
+                onClick={() => setIsOpen(false)}
             >
               <IoClose />
             </button>
