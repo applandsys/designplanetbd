@@ -8,8 +8,11 @@ import Image from 'next/image';
 import {fetchSettingData} from "@/services/site/SettingData";
 import config from "@/config";
 import Link from "next/link";
+import {getCategories} from "@/services/ecommerce/getCategories";
 
 export default function NavbarLeft() {
+
+  const [categories, setCategories] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,6 +29,11 @@ export default function NavbarLeft() {
       }
     }).catch(error => setError(error)
     ).finally(setLoading(false));
+
+    getCategories()
+        .then((res) => setCategories(res))
+        .catch((error) => setError(error))
+        .finally(() => setLoading(false));
 
     fetchSettingData().then((json) => {
       if (json.success) {
@@ -86,6 +94,36 @@ export default function NavbarLeft() {
             <FiMenu className="w-4 h-4" />
             Browse Categories
           </div>
+
+          <ul className="space-y-2 text-sm">
+            {categories?.length > 0 ? (
+                categories.map((item, idx) => (
+                    <li className="border-b  cursor-pointer py-2" key={idx}>
+                      <Link
+                          href={`/category/${item.slug}`}
+                          key={idx}
+                          className=""
+                          onClick={() => setIsOpen(false)}
+                      >
+                        <div className="flex items-center px-2">
+                          <Image
+                              src={`${config.publicPath}/images/categories/${item.image}`}
+                              alt={item.name}
+                              width={60}
+                              height={60}
+                              className="w-6 h-6 rounded"
+                          />
+                          <span className="transition px-2 duration-300 ease-in-out cursor-pointer hover:text-[#3bb77e] text-xs font-semibold text-gray-700">
+                                          {item.name}
+                                      </span>
+                        </div>
+                      </Link>
+                    </li>
+                ))
+            ) : (
+                <li className="border-b  cursor-pointer">No categories found.</li>
+            )}
+          </ul>
 
           <ul className="space-y-2 text-sm">
             <li className="border-b py-2 cursor-pointer">Home</li>
