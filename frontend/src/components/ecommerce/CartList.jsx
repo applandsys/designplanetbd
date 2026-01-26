@@ -150,7 +150,7 @@ const CartList = () => {
                                         <h3 className="font-medium text-gray-800 text-sm break-words leading-tight">
                                             {item.name}
                                         </h3>
-                                        <p className="text-green-600 font-semibold mt-2 text-base">
+                                        <p className="text-[#484899] font-semibold mt-2 text-base">
                                             ${item.price.toFixed(2)}
                                         </p>
                                     </div>
@@ -184,7 +184,7 @@ const CartList = () => {
                                         </button>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <span className="font-semibold text-green-600 text-base">
+                                        <span className="font-semibold text-[#484899] text-base">
                                             ${(item.price * item.quantity).toFixed(2)}
                                         </span>
                                         <button
