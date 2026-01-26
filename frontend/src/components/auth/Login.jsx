@@ -83,14 +83,14 @@ function Login({type}) {
                                 <label>
                                     <input type="checkbox" className="mr-2" />Remember me
                                 </label>
-                                <a href="#" className="text-green-600">Forgot password?</a>
+                                <a href="#" className="text-[#484899]">Forgot password?</a>
                             </div>
                             <div className="flex justify-between items-center text-sm mb-2 mt-4">
                                 <div>
-                                     Dont have an account ? <Link href="/auth/signup" className="text-green-600">Create</Link>
+                                     Dont have an account ? <Link href="/auth/signup" className="text-[#484899]">Create</Link>
                                 </div>
                                 <div>
-                                    <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">Log In</button>
+                                    <button type="submit" className="bg-[#484899] text-white px-4 py-2 rounded">Log In</button>
                                 </div>
                             </div>
                         </div>

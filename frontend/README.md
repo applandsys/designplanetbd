@@ -71,3 +71,7 @@ npm install
 ```
 http://localhost:4000/v1/product/categories = Product categories
 ```
+
+
+### Primary color
+`"text-[#484899]`

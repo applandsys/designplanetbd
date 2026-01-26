@@ -3,7 +3,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, removeFromCart, updateItemQuantity } from "@/redux/store/slices/cartSlice";
 import { ArrowLeftIcon, TrashIcon } from "@heroicons/react/16/solid";
-import PrimaryButton from "@/components/ui/PrimaryButton";
 import Image from "next/image";
 import React from "react";
 import config from "@/config";
@@ -84,9 +83,8 @@ const CartList = () => {
                                             {item.name}
                                         </span>
                                     </td>
-                                    <td className="px-2 py-2 text-center">${item.price.toFixed(2)}</td>
+                                    <td className="px-2 py-2 text-center"><span className="text-[#484899]">${item.price.toFixed(2)}</span></td>
                                     <td className="px-2 py-2 text-center">
-                                        {/* UPDATED OVAL-SHAPED QUANTITY BUTTONS */}
                                         <div className="flex items-center justify-center min-w-[140px]">
                                             <button
                                                 onClick={() => handleChangeQuantity(item, item.quantity - 1)}
