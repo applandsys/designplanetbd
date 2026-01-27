@@ -128,7 +128,7 @@ export default function CategoryCarousel() {
             <div className="flex justify-between items-center mb-8">
                 <h2 className="text-2xl text-gray-900 font-kumbh font-semibold tracking-wide">Explore Collections</h2>
                 <Link
-                    href="/collections"
+                    href="/categories"
                     className="text-black hover:text-red-600 font-medium text-sm transition-colors duration-300 relative group"
                 >
                     View All Collection
