@@ -47,7 +47,7 @@ const PromoCards = () => {
                     {banner.url && (
                         <Link
                             href={banner.url}
-                            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm inline-block"
+                            className="bg-[#484899] hover:bg-[#a1a1cb] text-white px-4 py-2 rounded-md text-sm inline-block"
                         >
                             Shop Now →
                         </Link>
