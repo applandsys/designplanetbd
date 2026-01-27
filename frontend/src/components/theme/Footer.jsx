@@ -154,7 +154,7 @@ export default function Footer() {
 
                                     {/* Scroll to Top Button */}
                                     <button
-                                        className="bg-[#f0f0f0] hover:bg-[#333333] hover:text-white text-black p-2 rounded-none border border-[#404040] transition-colors flex items-center justify-center"
+                                        className="hidden md:flex bg-[#f0f0f0] hover:bg-[#333333] hover:text-white text-black p-2 rounded-none border border-[#404040] transition-colors items-center justify-center"
                                         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                         aria-label="Scroll to top"
                                     >
@@ -169,6 +169,7 @@ export default function Footer() {
                                             <path d="m18 15-6-6-6 6" />
                                         </svg>
                                     </button>
+
                                 </div>
                             </div>
                         </div>
