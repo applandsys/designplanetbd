@@ -49,7 +49,18 @@ export default async function Categories() {
                                     <p className="text-xs text-gray-500 mt-1">
                                         {category._count?.products || 0} Products
                                     </p>
+
+
+                                    <div className="my-4">
+                                        <Link
+                                            key={category.id}
+                                            href={`/category/${category.slug}`}
+                                            className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-gray-600 transition-colors font-medium w-full text-sm">
+                                            Shop Now
+                                        </Link>
+                                    </div>
                                 </div>
+
                             </div>
                         </Link>
                     ))}
