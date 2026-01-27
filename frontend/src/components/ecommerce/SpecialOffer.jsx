@@ -63,25 +63,34 @@ const SpecialOffer = () => {
 
                     <div className="mt-4 flex w-full justify-center md:mt-0 md:absolute md:left-1/2 md:top-1/2 md:z-10 md:-translate-x-1/2 md:-translate-y-1/2">
                         <div className="w-full sm:max-w-sm bg-[#fefaf6] rounded-lg p-4 sm:p-6 shadow-2xl border border-[#f5f5f0] text-center">
-                            <div className="space-y-2 sm:space-y-3">
+                            <div className="flex flex-col space-y-2 sm:space-y-2">
+
                                 <h3 className="text-sm sm:text-base font-light text-gray-600 uppercase tracking-wide">
                                     Special Offer!
                                 </h3>
 
-                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                                     This Week Only
                                 </h2>
 
-                                <p className="text-sm sm:text-base text-gray-600 font-light">
+                                <div className="text-sm sm:text-base text-gray-600 font-light">
                                     Reserved for special occasions
-                                </p>
+                                </div>
 
-                                <a href="/categories" className="bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-red-600 transition-colors font-medium w-full text-sm">
+                                <div className="space-y-2 sm:space-y-3">
+                                <a
+                                    href="/categories"
+                                    className="inline-flex justify-center items-center bg-gray-900 text-white px-6 py-2.5 rounded-full hover:bg-red-600 transition-colors font-medium text-sm mt-2"
+                                >
                                     Explore Collection
                                 </a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
+
+
 
                 </div>
 
