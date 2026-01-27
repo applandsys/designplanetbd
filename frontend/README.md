@@ -75,3 +75,4 @@ http://localhost:4000/v1/product/categories = Product categories
 
 ### Primary color
 `"text-[#484899]`
+`"text-[#a1a1cb]`
