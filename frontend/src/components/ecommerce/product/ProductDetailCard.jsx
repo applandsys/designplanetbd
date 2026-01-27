@@ -576,7 +576,7 @@ const ProductDetailCard = ({ product }) => {
 
                         <button
                             onClick={handleAddToCart}
-                            className="flex items-center justify-center bg-[484899] text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-[#a1a1cb] transition-all shadow-lg hover:shadow-xl flex-1"
+                            className="flex items-center justify-center bg-[#484899] text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-[#a1a1cb] transition-all shadow-lg hover:shadow-xl flex-1"
                         >
                             <CartIcon className="w-6 h-6 mr-3" />
                             Add to cart
