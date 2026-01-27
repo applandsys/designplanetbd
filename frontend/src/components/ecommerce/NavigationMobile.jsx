@@ -12,6 +12,7 @@ import { getCategories } from "@/services/ecommerce/getCategories";
 import config from "@/config";
 
 export default function NavbarLeft() {
+
   const [categories, setCategories] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [siteLogo, setSiteLogo] = useState('logo.png');
@@ -50,9 +51,9 @@ export default function NavbarLeft() {
           {/* ================= SIDEBAR ================= */}
           <div
               className={`fixed top-0 left-0 h-screen w-[350px] bg-white border border-green-100 shadow-lg z-50
-          transform transition-transform duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          flex flex-col`}
+                          transform transition-transform duration-300 ease-in-out
+                          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+                          flex flex-col`}
           >
 
             {/* ===== Header (Fixed) ===== */}
@@ -64,7 +65,6 @@ export default function NavbarLeft() {
                   alt="logo"
                   priority
               />
-
               <button
                   onClick={() => setIsOpen(false)}
                   className="text-white text-xl bg-[#5454a0] rounded-full p-1 hover:bg-[#8383ba]"
@@ -120,9 +120,21 @@ export default function NavbarLeft() {
 
               {/* Static Links */}
               <ul className="space-y-2 text-sm">
-                <li className="border-b py-2 cursor-pointer">Home</li>
-                <li className="border-b py-2 cursor-pointer">About</li>
-                <li className="border-b py-2 cursor-pointer">Contact</li>
+                <li  className="border-b py-2 cursor-pointer">
+                  <Link href="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="border-b py-2 cursor-pointer">
+                  <Link href="/about">
+                    About
+                  </Link>
+                </li>
+                <li className="border-b py-2 cursor-pointer">
+                  <Link href="/contact">
+                    Contact
+                  </Link>
+                  </li>
               </ul>
 
               {/* Account */}

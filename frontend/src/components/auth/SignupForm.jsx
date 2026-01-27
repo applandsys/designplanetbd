@@ -66,10 +66,10 @@ export default function SignupForm({sponsorId=null}) {
     return (
         <div className="min-h-screen flex items-center justify-center">
             <div className="w-full max-w-md bg-white p-8 rounded shadow">
-                <h2 className="text-2xl font-bold text-gray-800 mb-1">Create an Account</h2>
+                <h2 className="text-2xl font-bold text-gray-800 mb-1"> Create an Account</h2>
                 <p className="text-sm text-gray-600 mb-6">
                     Already have an account?
-                    <Link href="/auth/login" className="text-[#484899] hover:underline">Log in instead!</Link>
+                    <Link href="/auth/login" className="text-[#484899] hover:underline"> Log in instead!</Link>
                 </p>
                 <form className="space-y-4" onSubmit={handleSubmit}>
 
