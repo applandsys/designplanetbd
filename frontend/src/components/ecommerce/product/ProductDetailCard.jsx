@@ -281,7 +281,7 @@ const ProductDetailCard = ({ product }) => {
                     </div>
 
                     <div className="mt-4 flex items-center gap-4">
-                        <span className="text-4xl text-green-600 font-bold">
+                        <span className="text-4xl text-[#484899] font-bold">
                           ৳ {discountPrice}
                         </span>
 
@@ -372,7 +372,7 @@ const ProductDetailCard = ({ product }) => {
 
                         <button
                             onClick={handleAddToCart}
-                            className="flex items-center justify-center bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 flex-1"
+                            className="flex items-center justify-center bg-[#484899] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#a1a1cb] flex-1"
                         >
                             <CartIcon className="w-5 h-5 mr-2" />
                             Add to cart
