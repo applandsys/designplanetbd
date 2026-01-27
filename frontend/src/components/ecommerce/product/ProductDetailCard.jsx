@@ -488,7 +488,7 @@ const ProductDetailCard = ({ product }) => {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <span className="text-5xl text-green-600 font-bold">
+                        <span className="text-5xl text-[#484899] font-bold">
                           ৳ {sellPrice}
                         </span>
                         {discount > 0 && (
@@ -576,7 +576,7 @@ const ProductDetailCard = ({ product }) => {
 
                         <button
                             onClick={handleAddToCart}
-                            className="flex items-center justify-center bg-green-500 text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-green-500 transition-all shadow-lg hover:shadow-xl flex-1"
+                            className="flex items-center justify-center bg-[484899] text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-[#a1a1cb] transition-all shadow-lg hover:shadow-xl flex-1"
                         >
                             <CartIcon className="w-6 h-6 mr-3" />
                             Add to cart

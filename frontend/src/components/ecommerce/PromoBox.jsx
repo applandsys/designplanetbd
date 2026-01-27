@@ -43,14 +43,15 @@ const PromoCards = () => {
                     height={300} 
                     className="h-full object-contain mx-auto rounded-xl"
                 />
-                <div className="absolute bottom-4 left-20">
-                    {
-                        banner.url && (
-                            <Link className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm w-max ml-12" href={banner.url}>
-                                Shop Now →
-                            </Link>
-                        )
-                    }
+                <div className="absolute bottom-4 left-0 pl-6">
+                    {banner.url && (
+                        <Link
+                            href={banner.url}
+                            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm inline-block"
+                        >
+                            Shop Now →
+                        </Link>
+                    )}
                 </div>
             </div>
         ))}
