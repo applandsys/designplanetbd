@@ -1,8 +1,23 @@
-import React from 'react';
+"use client"
+
+import React, {useEffect} from 'react';
 import TableData from "@/components/ui/TableData";
 import CommonCard from "@/components/ui/CommonCard";
+import {getAdminStats} from "@/services/admin/getStats";
+import {CreditCardIcon, CurrencyDollarIcon, UserGroupIcon} from "@heroicons/react/16/solid";
 
 const AdminDashboard = () => {
+
+    const [adminStats, setAdminStats] = React.useState([]);
+
+    useEffect(()=> {
+        getAdminStats().then(res=>{
+            setAdminStats(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+    },[]);
+
     const columns = [
         {
             id: 1,
@@ -45,33 +60,58 @@ const AdminDashboard = () => {
             parent: ''
         }
     ];
+
     return (
         <div>
             <div className="flex-1 p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                     <div className="bg-white shadow-lg rounded-lg p-6">
-                        <h2 className="text-xl font-semibold mb-4">Customers</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Total Customers</h2>
                         <div className="flex justify-between items-center">
-                            <span className="text-3xl font-bold">3,782</span>
-                            <span className="text-green-500">+11.01%</span>
+                            <UserGroupIcon className="h-12 w-12"/>
+                            <span className="text-3xl font-bold flex"> {adminStats.totalCustomer}</span>
+                            {/*<span className="text-green-500">+11.01%</span>*/}
                         </div>
                     </div>
                     <div className="bg-white shadow-lg rounded-lg p-6">
-                        <h2 className="text-xl font-semibold mb-4">Orders</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Total Complete Orders</h2>
                         <div className="flex justify-between items-center">
-                            <span className="text-3xl font-bold">5,359</span>
-                            <span className="text-red-500">-9.05%</span>
+                            <CreditCardIcon className="h-8 w-8"/>
+                            <span className="text-3xl font-bold"> {adminStats.totalOrder} </span>
+                            {/*<span className="text-red-500">-9.05%</span>*/}
                         </div>
                     </div>
                     <div className="bg-white shadow-lg rounded-lg p-6">
-                        <h2 className="text-xl font-semibold mb-4">Monthly Target</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Order Amount</h2>
                         <div className="flex justify-between items-center">
-                            <span className="text-3xl font-bold">75.55%</span>
-                            <span className="text-green-500">+10%</span>
+                            <CurrencyDollarIcon className="h-8 w-8"/>
+                            <span className="text-3xl font-bold">  {adminStats.totalOrderAmount} </span>
+                            {/*<span className="text-green-500">+10%</span>*/}
                         </div>
-                        <p className="mt-4 text-gray-500">
-                            You earn $3,287 today, its higher than last month. Keep up your good work!
-                        </p>
+                    </div>
+                    <div className="bg-white shadow-lg rounded-lg p-6">
+                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Today Customer</h2>
+                        <div className="flex justify-between items-center">
+                            <UserGroupIcon className="h-8 w-8"/>
+                            <span className="text-3xl font-bold"> {adminStats.todayCustomer} </span>
+                            {/*<span className="text-green-500">+10%</span>*/}
+                        </div>
+                    </div>
+                    <div className="bg-white shadow-lg rounded-lg p-6">
+                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Today All  Orders</h2>
+                        <div className="flex justify-between items-center">
+                            <CreditCardIcon className="h-8 w-8"/>
+                            <span className="text-3xl font-bold"> {adminStats.getTodayOrder} </span>
+                            {/*<span className="text-red-500">-9.05%</span>*/}
+                        </div>
+                    </div>
+                    <div className="bg-white shadow-lg rounded-lg p-6">
+                        <h2 className="text-xl font-semibold mb-4 text-gray-700">Today Amount</h2>
+                        <div className="flex justify-between items-center">
+                            <CurrencyDollarIcon className="h-8 w-8"/>
+                            <span className="text-3xl font-bold">  {adminStats.todayOrderAmount} </span>
+                            {/*<span className="text-red-500">-9.05%</span>*/}
+                        </div>
                     </div>
                 </div>
             </div>

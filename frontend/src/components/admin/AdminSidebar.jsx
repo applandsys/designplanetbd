@@ -17,7 +17,7 @@ const AdminSidebar = () => {
                     menuItem.items.length === 0 ? (
                         <a
                             key={menuItem.section}
-                            href="#"
+                            href={menuItem.href}
                             className="block font-semibold p-2 bg-green-50 hover:bg-green-200 rounded"
                         >
                             {menuItem.section}

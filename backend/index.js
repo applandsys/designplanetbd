@@ -47,6 +47,8 @@ const settingRoute = require('@/modules/ecommerce/route/settingRoute');
 const userStatsRoute = require('@/modules/ecommerce/route/stats/userStatsRoute');
 const userDataRoute = require('@/modules/ecommerce/route/user/userDataRoute');
 
+// Admin
+const adminStatsRoute = require('@/modules/ecommerce/route/stats/adminStatsRoute');
 /**
  * ======================
  *     API ENDPOINTS
@@ -68,6 +70,7 @@ app.use('/v1/vendor', vendorRoute);
 app.use('/v1/admin/product', productAdminRoute);
 app.use('/v1/admin/order', orderAdminRoute);
 app.use('/v1/admin/setting', settingRoute);
+app.use('/v1/admin/stats', adminStatsRoute);
 
 // User
 app.use('/v1/user/auth', userAuthRoute);

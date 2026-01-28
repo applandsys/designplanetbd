@@ -2,7 +2,8 @@
   {
     "section": "Dashboard",
     "icon": "",
-    "items": []
+    "items": [],
+    "href": "/admin/dashboard"
   },
   {
     "section": "Product",
